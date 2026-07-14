@@ -95,6 +95,7 @@ def command_execute(args: adsk.core.CommandEventArgs):
     num_riblets = num_riblets_spinner.value
     length = userParams.itemByName('CW').value * 0.75
     height = userParams.itemByName('Height').value
+    crown_height = userParams.itemByName('CH').value
     depth = userParams.itemByName('CL').value
     riblet_depth = userParams.itemByName('RD').value
 
@@ -105,7 +106,6 @@ def command_execute(args: adsk.core.CommandEventArgs):
     constraints = profileSketch.geometricConstraints
     sketchDimensions = profileSketch.sketchDimensions
     sketchLines = profileSketch.sketchCurves.sketchLines
-    h=5
     
 
     for i in range(num_riblets):
@@ -149,8 +149,8 @@ def command_execute(args: adsk.core.CommandEventArgs):
         else:
             constraints.addCoincident(spline.startSketchPoint, prev_spline.endSketchPoint)
         
-        displacementFull = -h*(4)*((i+1)/num_riblets)*((i+1)/num_riblets-1)
-        displacementHalf = -h*(4)*((i+0.5)/num_riblets)*((i+0.5)/num_riblets-1)
+        displacementFull = -crown_height*40*((i+1)/num_riblets)*((i+1)/num_riblets-1)
+        displacementHalf = -crown_height*40*((i+0.5)/num_riblets)*((i+0.5)/num_riblets-1)
 
         sketchDimension = sketchDimensions.addDistanceDimension(first_spline.fitPoints.item(0), fitPoint2, adsk.fusion.DimensionOrientations.VerticalDimensionOrientation, fitPoint2.geometry)
         sketchDimension.parameter.expression = f'{displacementFull} mm'
@@ -286,7 +286,7 @@ def command_execute(args: adsk.core.CommandEventArgs):
     constraints.addMidPoint(verticalConstructionLine.endSketchPoint, topConstructionLine)
     verticalConstructionLine.isConstruction = True
     sketchDimension = sketchDimensions.addDistanceDimension(verticalConstructionLine.startSketchPoint, verticalConstructionLine.endSketchPoint, adsk.fusion.DimensionOrientations.VerticalDimensionOrientation, verticalConstructionLine.endSketchPoint.geometry)
-    sketchDimension.parameter.expression = 'CL/5'
+    sketchDimension.parameter.expression = 'CT'
     
     riblet_peaks = [0]
     for i in range(num_riblets):
@@ -339,12 +339,12 @@ def command_execute(args: adsk.core.CommandEventArgs):
 
     for i in range(num_riblets + 1):
         points = adsk.core.ObjectCollection.create()
-        displacement = -h*(0.4)*(i/num_riblets)*(i/num_riblets-1)
+        displacement = -crown_height*4*(i/num_riblets)*(i/num_riblets-1)
         k = num_riblets/2 - i
 
         # Define the points the spline with fit through.
         points.add(adsk.core.Point3D.create(-height-displacement, - depth/2, -length*i/num_riblets + length/2))
-        points.add(adsk.core.Point3D.create(-height-riblet_depth/2-displacement, depth/10 - depth/2, -length*i/num_riblets + length/2 + length*k/25))
+        points.add(adsk.core.Point3D.create(-height-riblet_depth/2-displacement, depth/10 - depth/2, -length*i/num_riblets + length/2)) # + length*k/25))
         points.add(adsk.core.Point3D.create(-height-riblet_depth-displacement, riblet_peaks[i] + depth/2, -length*i/num_riblets + length/2))
 
         spline = splines.add(points)
@@ -364,16 +364,17 @@ def command_execute(args: adsk.core.CommandEventArgs):
         prof = rootComp.createOpenProfile(splines.item(i), False)
         
         paths = pathSketch.sketchCurves.sketchFittedSplines
-        path = rootComp.features.createPath(paths.item(i))
-        guide = rootComp.features.createPath(paths.item(i + 1))
+        path = rootComp.features.createPath(paths.item(i + round(1 - i/num_riblets)))
+        # guide = rootComp.features.createPath(paths.item(i + 1))
 
         sweeps = rootComp.features.sweepFeatures
         sweepInput = sweeps.createInput(prof, path, adsk.fusion.FeatureOperations.NewBodyFeatureOperation)
         sweepInput.extent = adsk.fusion.SweepExtentTypes.FullExtentsExtentType
-        sweepInput.guideRail = guide
+        sweepInput.orientation = adsk.fusion.SweepOrientationTypes.ParallelOrientationType
+        # sweepInput.guideRail = guide
         sweepInput.isSolid = False
         sweep = sweeps.add(sweepInput)
-        futil.log(f'{sweep.extent}')
+
         surface = sweep.bodies.item(0)
         surfaces.add(surface)
     

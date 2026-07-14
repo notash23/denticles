@@ -4,3 +4,6 @@ vscode/*
 !.vscode/launch.json
 !.vscode/extensions.json
 !.vscode/*.code-snippets
+/adsk/
+__pycache__/
+*.pyc
