@@ -7,5 +7,5 @@ addin/adsk/
 simulation/*
 !simulation/0/
 !simulation/system/
-!simulation/constant/transportProperties
+!simulation/constant/
 log.*
