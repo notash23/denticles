@@ -9,42 +9,30 @@ FoamFile
 {
     version     2.0;
     format      ascii;
-    class       volScalarField;
-    object      p;
+    class       dictionary;
+    object      surfaceFeatureExtractDict;
 }
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
-dimensions      [0 2 -2 0 0 0 0];
-
-internalField   uniform 0;
-
-boundaryField
+cylinder.stl
 {
-    walls
+    // How to obtain raw features (extractFromFile || extractFromSurface)
+    extractionMethod    extractFromSurface;
+
+    extractFromSurfaceCoeffs
     {
-        type            zeroGradient;
+        // Mark edges whose adjacent surface normals are at an angle less
+        // than includedAngle as features
+        // - 0  : selects no edges
+        // - 180: selects all edges
+        includedAngle   150;
     }
 
-    inlet
-    {
-        type            zeroGradient;
-    }
+    // Write options
 
-    outlet
-    {
-        type            fixedValue;
-	value		$internalField;
-    }
-
-    frontAndBack
-    {
-        type            zeroGradient;
-    }
-    cylinder
-    {
-        type            zeroGradient;
-    }
-
+        // Write features to obj format for postprocessing
+        writeObj                yes;
 }
+
 
 // ************************************************************************* //
