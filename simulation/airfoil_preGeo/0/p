@@ -1,8 +1,8 @@
 /*--------------------------------*- C++ -*----------------------------------*\
 | =========                 |                                                 |
 | \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
-|  \\    /   O peration     | Version:  v2606                                 |
-|   \\  /    A nd           | Website:  www.openfoam.com                      |
+|  \\    /   O peration     | Version:  2.2.1                                 |
+|   \\  /    A nd           | Web:      www.OpenFOAM.org                      |
 |    \\/     M anipulation  |                                                 |
 \*---------------------------------------------------------------------------*/
 FoamFile
@@ -20,21 +20,37 @@ internalField   uniform 0;
 
 boundaryField
 {
-    movingWall
+    walls
     {
         type            zeroGradient;
     }
 
-    fixedWalls
+    inlet
     {
         type            zeroGradient;
+    }
+
+    outlet
+    {
+        type            fixedValue;
+	value		$internalField;
     }
 
     frontAndBack
     {
-        type            empty;
+        type            zeroGradient;
     }
-}
 
+    airfoil
+    {
+        type            zeroGradient;
+    }
+
+    denticles
+    {
+        type            zeroGradient;
+    }
+
+}
 
 // ************************************************************************* //

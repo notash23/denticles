@@ -1,0 +1,95 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  2.2.1                                 |
+|   \\  /    A nd           | Web:      www.OpenFOAM.org                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    object      blockMeshDict;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+convertToMeters 0.001;	//This gives you the scale: 0.001 would mean all units in this file are [mm]
+
+vertices
+(
+    (-7.5  -5   0)     // Vertex 0 (Front-Left-Bottom)
+    ( 7.5  -5   0)     // Vertex 1 (Front-Right-Bottom)
+    ( 7.5  10   0)     // Vertex 2 (Back-Right-Bottom - extended to 10)
+    (-7.5  10   0)     // Vertex 3 (Back-Left-Bottom - extended to 10)
+    (-7.5  -5  12)     // Vertex 4 (Front-Left-Top)
+    ( 7.5  -5  12)     // Vertex 5 (Front-Right-Top)
+    ( 7.5  10  12)     // Vertex 6 (Back-Right-Top - extended to 10)
+    (-7.5  10  12)     // Vertex 7 (Back-Left-Top - extended to 10)
+);
+
+blocks			//defining the block which the geometry is made out of
+(
+    hex (0 1 2 3 4 5 6 7) (50 25 50) simpleGrading (1 1 1)  	
+//this means that the only block in the geometry is defined by vertices (0 1 2 ...), there are 100, 10 
+//and 1 cells in the x, y, and z direction and that in each direction all the cells have the same length 
+);
+
+edges
+(
+//    spline 0 1 
+//    (
+//	    (5 -2 0)
+//    )
+//    spline 4 5 
+//    (
+//	    (5 -2 0.1)
+//    )
+);
+
+boundary
+(
+    walls	//choose a name for the boundary
+    {
+        type wall;	//define the type of the boundary
+        faces
+        (
+            (4 5 6 7)	//list the faces; vertices should be listed in clockwise direction, as seen from the block
+            (0 1 2 3)
+        );
+    }
+
+    
+    inlet
+    {
+        type patch;
+        faces
+        (
+            (0 1 5 4)
+	);
+    }	   	
+
+
+    outlet
+    {
+        type patch;
+        faces
+        (
+                (2 3 7 6)
+        );
+    }
+
+
+    frontAndBack
+    {
+        type wall;
+        faces
+        (
+            (1 2 6 5)
+            (0 3 7 4)
+        );
+    }
+);
+
+
+// ************************************************************************* //

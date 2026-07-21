@@ -1,8 +1,8 @@
 /*--------------------------------*- C++ -*----------------------------------*\
 | =========                 |                                                 |
 | \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
-|  \\    /   O peration     | Version:  v2606                                 |
-|   \\  /    A nd           | Website:  www.openfoam.com                      |
+|  \\    /   O peration     | Version:  5                                     |
+|   \\  /    A nd           | Web:      www.OpenFOAM.org                      |
 |    \\/     M anipulation  |                                                 |
 \*---------------------------------------------------------------------------*/
 FoamFile
@@ -10,52 +10,23 @@ FoamFile
     version     2.0;
     format      ascii;
     class       dictionary;
-    object      PDRblockMeshDict;
+    location    "constant";
+    object      turbulenceProperties;
 }
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
-scale   0.1;
+simulationType RAS;
 
-x
+RAS
 {
-    points  (0 1);
-    nCells  (20);
-    ratios  (1);
+    // Tested with kEpsilon, realizableKE, kOmega, kOmegaSST, v2f,
+    // ShihQuadraticKE, LienCubicKE.
+    RASModel        kOmegaSST;
+
+    turbulence      on;
+
+    printCoeffs     on;
 }
-
-y
-{
-    points  (0 1);
-    nCells  (20);
-    ratios  (1);
-}
-
-z
-{
-    points  (0 0.1);
-    nCells  (1);
-    ratios  (1);
-}
-
-
-boundary
-(
-    movingWall
-    {
-        type  wall;
-        faces (3);
-    }
-    fixedWalls
-    {
-        type  wall;
-        faces (0 1 2);
-    }
-    frontAndBack
-    {
-        type  empty;
-        faces (4 5);
-    }
-);
 
 
 // ************************************************************************* //
