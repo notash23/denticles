@@ -5,7 +5,7 @@ addin/adsk/
 
 # For OpenFoam
 simulation/*
-!simulation/0/
-!simulation/system/
-!simulation/constant/
+!simulation/*/0/
+!simulation/*/system/
+!simulation/*/constant/
 log.*
