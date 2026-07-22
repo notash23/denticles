@@ -1,0 +1,69 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  5                                     |
+|   \\  /    A nd           | Web:      www.OpenFOAM.org                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    location    "system";
+    object      controlDict;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+application     simpleFoam;
+
+startFrom       startTime;
+
+startTime       0;
+
+stopAt          endTime;
+
+endTime         2000;
+
+deltaT          1;
+
+writeControl    timeStep;
+
+writeInterval   50;
+
+purgeWrite      0;
+
+writeFormat     ascii;
+
+writePrecision  6;
+
+writeCompression off;
+
+timeFormat      general;
+
+timePrecision   6;
+
+runTimeModifiable true;
+
+functions
+{
+    #includeFunc streamlines
+
+    //I added this part with the Gemini's suggestion
+    //You must add the denticles patch to the patches list so OpenFOAM calculates the total drag (airfoil + denticles)
+    forces
+    {
+        type            forces;
+        libs            ("libforces.so");
+        writeControl    timeStep;
+        timeInterval    1;
+        
+        patches         (airfoil denticles); // Include BOTH patches!
+        
+        rho             rhoInf;
+        rhoInf          1.225;
+        CofR            (0.25 0 0); // Center of rotation
+    }
+}
+
+// ************************************************************************* //

@@ -4,8 +4,4 @@ addin/adsk/
 **/__pycache__/
 
 # For OpenFoam
-simulation/*
-!simulation/*/0/
-!simulation/*/system/
-!simulation/*/constant/
 log.*
