@@ -83,7 +83,7 @@ castellatedMeshControls
     // Number of buffer layers between different levels.
     // 1 means normal 2:1 refinement restriction, larger means slower
     // refinement.
-    nCellsBetweenLevels 2;
+    nCellsBetweenLevels 3;
 
 
 
@@ -96,12 +96,12 @@ castellatedMeshControls
     (
         {
             file "airfoil.eMesh";
-            level 3;
+            level 4;
         }
-        
+    
         {
             file "denticles.eMesh";
-            level 6;
+            level 8;
         }
     );
 
@@ -121,13 +121,13 @@ castellatedMeshControls
         airfoil
         {
             // Surface-wise min and max refinement level
-            level (2 3);
+            level (3 4);
         }
 
         denticles
         {
             // High surface refinement level to resolve micro-geometry features
-            level (5 6);
+            level (7 8);
         }
     }
 
@@ -228,7 +228,7 @@ addLayersControls
         "airfoil"
         {
             nSurfaceLayers 3;
-        },
+        }
 
         "denticles"
         {
