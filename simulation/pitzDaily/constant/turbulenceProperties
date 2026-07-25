@@ -10,25 +10,21 @@ FoamFile
     version     2.0;
     format      ascii;
     class       dictionary;
-    object      fvSolution;
+    object      turbulenceProperties;
 }
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
-solvers
-{
-    T
-    {
-        solver          PBiCGStab;
-        preconditioner  DILU;
-        tolerance       1e-6;
-        relTol          0;
-        norm            default;
-    }
-}
+simulationType      RAS;
 
-SIMPLE
+RAS
 {
-    nNonOrthogonalCorrectors 0;
+    // Tested with kEpsilon, realizableKE, kOmega, kOmegaSST,
+    // ShihQuadraticKE, LienCubicKE.
+    RASModel        kEpsilon;
+
+    turbulence      on;
+
+    printCoeffs     on;
 }
 
 
