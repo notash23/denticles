@@ -9,48 +9,40 @@ FoamFile
 {
     version     2.0;
     format      ascii;
-    class       volScalarField;
-    object      T;
+    class       dictionary;
+    object      controlDict;
 }
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
-dimensions      [0 0 0 1 0 0 0];
+application     scalarTransportFoam;
 
-internalField   uniform 1;
+startFrom       startTime;
 
-boundaryField
-{
-    inlet
-    {
-        type            fixedValue;
-        value           uniform 1;
-    }
+startTime       0;
 
-    outlet
-    {
-        type            zeroGradient;
-    }
+stopAt          endTime;
 
-    bottom
-    {
-        type            symmetryPlane;
-    }
+endTime         5;
 
-    top
-    {
-        type            symmetryPlane;
-    }
+deltaT          0.01;
 
-    obstacle
-    {
-        type            zeroGradient;
-    }
+writeControl    runTime;
 
-    defaultFaces
-    {
-        type            empty;
-    }
-}
+writeInterval   1;
+
+purgeWrite      0;
+
+writeFormat     ascii;
+
+writePrecision  6;
+
+writeCompression off;
+
+timeFormat      general;
+
+timePrecision   6;
+
+runTimeModifiable true;
 
 
 // ************************************************************************* //
