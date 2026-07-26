@@ -16,7 +16,7 @@ FoamFile
 
 //JN: Here we define, which edges we want to use as features for the geometry. Usually we use all of them
 
-inlet.stl//JN: Name of the stl file
+airfoil.stl//JN: Name of the stl file
 {
     // How to obtain raw features (extractFromFile || extractFromSurface)
     extractionMethod    extractFromSurface;
@@ -33,39 +33,6 @@ inlet.stl//JN: Name of the stl file
     // Write options
 
         // Write features to obj format for postprocessing
-        writeObj                yes;
-}
-outlet.stl
-{
-    extractionMethod    extractFromSurface;
-
-    extractFromSurfaceCoeffs
-    {
-        includedAngle   180;
-    }
-
-        writeObj                yes;
-}
-pipe.stl
-{
-    extractionMethod    extractFromSurface;
-
-    extractFromSurfaceCoeffs
-    {
-        includedAngle   180;
-    }
-
-        writeObj                yes;
-}
-tank.stl
-{
-    extractionMethod    extractFromSurface;
-
-    extractFromSurfaceCoeffs
-    {
-        includedAngle   180;
-    }
-
         writeObj                yes;
 }
 

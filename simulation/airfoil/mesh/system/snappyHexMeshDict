@@ -29,25 +29,10 @@ addLayers       false;//JN: layers, we will not use this in this tutorial
 // - to 'snap' the mesh boundary to the surface
 geometry
 {
-    inlet.stl//JN: name of the stl file
+    airfoil.stl//JN: name of the stl file
     {
         type triSurfaceMesh;
-        name inlet;//JN: name we will use in this dictionary
-    }
-    outlet.stl
-    {
-        type triSurfaceMesh;
-        name outlet;
-    }
-    pipe.stl
-    {
-        type triSurfaceMesh;
-        name pipe;
-    }
-    tank.stl
-    {
-        type triSurfaceMesh;
-        name tank;
+        name airfoil;//JN: name we will use in this dictionary
     }
 };
 
@@ -93,22 +78,9 @@ castellatedMeshControls
     features
     (
         {
-            file "inlet.eMesh";
+            file "airfoil.eMesh";
             level 0;//JN: refinement defined by features
         }
-        {
-            file "outlet.eMesh";
-            level 0;
-        }
-        {
-            file "pipe.eMesh";
-            level 0;
-        }
-        {
-            file "tank.eMesh";
-            level 0;
-        }
-
     );
 
 
@@ -124,27 +96,11 @@ castellatedMeshControls
 
     refinementSurfaces
     {
-        inlet
+        airfoil
         {
             // Surface-wise min and max refinement level
             level (0 0);//JN: refinement defined by surfaces - i.e. stl surfaces
         }
-	outlet
-        {
-            // Surface-wise min and max refinement level
-            level (0 0);
-        }
-	pipe
-        {
-            // Surface-wise min and max refinement level
-            level (0 0);
-        }
-	tank
-        {
-            // Surface-wise min and max refinement level
-            level (0 0);
-        }
-
     }
 
     resolveFeatureAngle 30;

@@ -22,7 +22,7 @@ startTime       0;
 
 stopAt          endTime;
 
-endTime         5000;
+endTime         2000;
 
 deltaT          1;
 
@@ -30,7 +30,7 @@ writeControl    timeStep;
 
 writeInterval   100;
 
-purgeWrite      10;
+purgeWrite      0;
 
 writeFormat     ascii;
 
@@ -46,10 +46,7 @@ runTimeModifiable true;
 
 functions
 {
-    #include "forceCoeffs"
-    #include "fieldAverage"
-    #include "referencePressure"
-    #include "runTimeControls"
+    #includeFunc streamlines
 }
 
 
