@@ -9,45 +9,47 @@ FoamFile
 {
     version     2.0;
     format      ascii;
-    class       volScalarField;
-    object      nut;
+    class       dictionary;
+    object      controlDict;
 }
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
-dimensions      [0 2 -1 0 0 0 0];
+application     simpleFoam;
 
-internalField   uniform 0;
+startFrom       startTime;
 
-boundaryField
+startTime       0;
+
+stopAt          endTime;
+
+endTime         5000;
+
+deltaT          1;
+
+writeControl    timeStep;
+
+writeInterval   100;
+
+purgeWrite      10;
+
+writeFormat     ascii;
+
+writePrecision  6;
+
+writeCompression off;
+
+timeFormat      general;
+
+timePrecision   6;
+
+runTimeModifiable true;
+
+functions
 {
-    inlet
-    {
-        type            calculated;
-        value           uniform 0;
-    }
-
-    outlet
-    {
-        type            calculated;
-        value           uniform 0;
-    }
-
-    upperWall
-    {
-        type            nutkWallFunction;
-        value           uniform 0;
-    }
-
-    lowerWall
-    {
-        type            nutkWallFunction;
-        value           uniform 0;
-    }
-
-    frontAndBack
-    {
-        type            empty;
-    }
+    #include "forceCoeffs"
+    #include "fieldAverage"
+    #include "referencePressure"
+    #include "runTimeControls"
 }
 
 

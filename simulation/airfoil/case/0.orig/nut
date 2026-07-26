@@ -9,54 +9,36 @@ FoamFile
 {
     version     2.0;
     format      ascii;
-    class       dictionary;
-    object      fvSchemes;
+    class       volScalarField;
+    object      nut;
 }
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
-ddtSchemes
+dimensions      [0 2 -1 0 0 0 0];
+
+internalField   uniform 0;
+
+boundaryField
 {
-    default         steadyState;
-}
+    "(body|upperWall|lowerWall)"
+    {
+        type            nutkWallFunction;
+        Cmu             0.09;
+        kappa           0.41;
+        E               9.8;
+        value           $internalField;
+    }
 
-gradSchemes
-{
-    default         Gauss linear;
-}
+    frontAndBack
+    {
+        type            empty;
+    }
 
-divSchemes
-{
-    default         none;
-
-    div(phi,U)      bounded Gauss linearUpwind grad(U);
-
-    turbulence      bounded Gauss limitedLinear 1;
-    div(phi,k)      $turbulence;
-    div(phi,epsilon) $turbulence;
-    div(phi,omega)  $turbulence;
-
-    div(nonlinearStress) Gauss linear;
-    div((nuEff*dev2(T(grad(U))))) Gauss linear;
-}
-
-laplacianSchemes
-{
-    default         Gauss linear corrected;
-}
-
-interpolationSchemes
-{
-    default         linear;
-}
-
-snGradSchemes
-{
-    default         corrected;
-}
-
-wallDist
-{
-    method          meshWave;
+    ".*"
+    {
+        type            calculated;
+        value           $internalField;
+    }
 }
 
 

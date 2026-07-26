@@ -1,8 +1,8 @@
 /*--------------------------------*- C++ -*----------------------------------*\
 | =========                 |                                                 |
 | \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
-|  \\    /   O peration     | Version:  v2606                                 |
-|   \\  /    A nd           | Website:  www.openfoam.com                      |
+|  \\    /   O peration     | Version:  4.0                                   |
+|   \\  /    A nd           | Web:      www.OpenFOAM.org                      |
 |    \\/     M anipulation  |                                                 |
 \*---------------------------------------------------------------------------*/
 FoamFile
@@ -10,22 +10,15 @@ FoamFile
     version     2.0;
     format      ascii;
     class       dictionary;
-    object      turbulenceProperties;
+    object      meshQualityDict;
 }
+
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
-simulationType      RAS;
+//Here we use standard mesh quality settings
 
-RAS
-{
-    // Tested with kEpsilon, realizableKE, kOmega, kOmegaSST,
-    // ShihQuadraticKE, LienCubicKE.
-    RASModel        kEpsilon;
-
-    turbulence      on;
-
-    printCoeffs     on;
-}
+// Include defaults parameters from master dictionary
+#includeEtc "caseDicts/meshQualityDict"
 
 
 // ************************************************************************* //

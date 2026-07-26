@@ -1,1 +1,18 @@
-# denticles
+# Denticles
+
+This repository aims at simulating the fluid flow on a NACA0012 airfoil that is covered with shark denticles that is generated using the simulation in `addin`. Simulating different shark species' denticles will help us understand better how denticles help with reducing friction.
+
+## Akash's curiosity
+- About turbulent flow
+    - Steady or Transient
+    - RAS or LES
+    - Find $k$, $\omega$, and $\epsilon$
+- Understand how SnappyHexMesh works
+- Figure out if we can use adaptive mesh refinement
+- How do we use adaptive time step? (Useful for our turbulent flow)
+- Learn more about aerodynamics theory
+- How do we run multicore parallel simulation?
+- Find out if it would be feasible to run an FSI simulation
+
+## Akash Notes
+nothing yet... Akash doesn't really takes notes
