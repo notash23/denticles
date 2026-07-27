@@ -17,7 +17,7 @@ FoamFile
 
 // Which of the steps to run
 castellatedMesh true;//JN: "LEGO" mesh
-snap            false;//JN: real mesh
+snap            true;//JN: real mesh
 addLayers       false;//JN: layers, we will not use this in this tutorial
 
 
@@ -48,14 +48,14 @@ castellatedMeshControls
     // If local number of cells is >= maxLocalCells on any processor
     // switches from from refinement followed by balancing
     // (current method) to (weighted) balancing before refinement.
-    maxLocalCells 100000;//JN: for parallel meshing
+    maxLocalCells 400000;//JN: for parallel meshing
 
     // Overall cell limit (approximately). Refinement will stop immediately
     // upon reaching this number so a refinement level might not complete.
     // Note that this is the number of cells before removing the part which
     // is not 'visible' from the keepPoint. The final number of cells might
     // actually be a lot less.
-    maxGlobalCells 2000000;//JN: maximum number of cells - guiding value, can be exceeded
+    maxGlobalCells 6700000;//JN: maximum number of cells - guiding value, can be exceeded
 
     // The surface refinement loop might spend lots of iterations refining just a
     // few cells. This setting will cause refinement to stop if <= minimumRefine
@@ -79,7 +79,7 @@ castellatedMeshControls
     (
         {
             file "airfoil.eMesh";
-            level 0;//JN: refinement defined by features
+            level 1;//JN: refinement defined by features
         }
     );
 
@@ -99,11 +99,11 @@ castellatedMeshControls
         airfoil
         {
             // Surface-wise min and max refinement level
-            level (0 0);//JN: refinement defined by surfaces - i.e. stl surfaces
+            level (2 4);//JN: refinement defined by surfaces - i.e. stl surfaces
         }
     }
 
-    resolveFeatureAngle 30;
+    resolveFeatureAngle 10;
 
 
     // Region-wise refinement
@@ -134,7 +134,7 @@ castellatedMeshControls
     // NOTE: This point should never be on a face, always inside a cell, even
     // after refinement.
     // This is an outside point locationInMesh (-0.033 -0.033 0.0033);
-    locationInMesh (0 0 0); //JN: point inside our geometry
+    locationInMesh (6.7 0 0); //JN: point inside our geometry
 
     // Whether any faceZones (as specified in the refinementSurfaces)
     // are only on the boundary of corresponding cellZones or also allow
