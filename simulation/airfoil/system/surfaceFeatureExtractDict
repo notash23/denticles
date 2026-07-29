@@ -9,33 +9,39 @@ FoamFile
 {
     version     2.0;
     format      ascii;
-    class       volScalarField;
-    object      p;
+    class       dictionary;
+    object      surfaceFeatureExtractDict;
 }
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
-dimensions      [0 2 -2 0 0 0 0];
-
-internalField   uniform 0;
-
-boundaryField
+airfoil.stl
 {
-    inlet
-    {
-        type            zeroGradient;
-    }
+    // Extract raw features (none | extractFromFile | extractFromSurface)
+    extractionMethod    extractFromSurface;
 
-    outlet
-    {
-        type            fixedValue;
-        value           uniform 0;
-    }
+    // Mark edges whose adjacent surface normals are at an angle less
+    // than includedAngle as features
+    // - 0  : selects no edges
+    // - 180: selects all edges
+    includedAngle       172;
 
-    walls
-    {
-        type            zeroGradient;
-    }
+    curvature true;
+    // Do not mark region edges
+    geometricTestOnly   yes;
+
+    // Generate additional intersection features (none | self | region)
+    intersectionMethod  none;
+
+    // Tolerance for surface intersections
+    // tolerance           1e-3;
+
+    // Output options:
+
+    // Write features to obj format for postprocessing
+    writeObj            no;
 }
+
+
 
 
 // ************************************************************************* //

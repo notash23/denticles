@@ -31,21 +31,10 @@ boundaryField
         type            zeroGradient;
     }
 
-    upperWall
+    walls
     {
         type            epsilonWallFunction;
         value           uniform 14.855;
-    }
-
-    lowerWall
-    {
-        type            epsilonWallFunction;
-        value           uniform 14.855;
-    }
-
-    frontAndBack
-    {
-        type            empty;
     }
 }
 

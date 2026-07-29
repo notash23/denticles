@@ -4,14 +4,14 @@ This repository aims at simulating the fluid flow on a NACA0012 airfoil that is 
 
 ## Akash's curiosity
 - About turbulent flow
-    - Steady or Transient
+    - Steady or Transient: **Probably doing steady so it is less computationally expensive**
     - RAS or LES
     - Find $k$, $\omega$, and $\epsilon$
-- Understand how SnappyHexMesh works
+- **DONE**: Understand how SnappyHexMesh works
 - Figure out if we can use adaptive mesh refinement
 - How do we use adaptive time step? (Useful for our turbulent flow)
 - Learn more about aerodynamics theory
-- How do we run multicore parallel simulation?
+- **DONE**: How do we run multicore parallel simulation?
 - Find out if it would be feasible to run an FSI simulation
 
 ## Akash Notes
