@@ -31,19 +31,9 @@ boundaryField
         type            zeroGradient;
     }
 
-    upperWall
+    walls
     {
         type            noSlip;
-    }
-
-    lowerWall
-    {
-        type            noSlip;
-    }
-
-    frontAndBack
-    {
-        type            empty;
     }
 }
 

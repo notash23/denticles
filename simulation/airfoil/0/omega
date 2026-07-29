@@ -31,21 +31,10 @@ boundaryField
         type            zeroGradient;
     }
 
-    upperWall
+    walls
     {
         type            omegaWallFunction;
         value           $internalField;
-    }
-
-    lowerWall
-    {
-        type            omegaWallFunction;
-        value           $internalField;
-    }
-
-    frontAndBack
-    {
-        type            empty;
     }
 }
 
