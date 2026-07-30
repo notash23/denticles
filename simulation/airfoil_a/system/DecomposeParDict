@@ -73,7 +73,7 @@ multiLevelCoeffs
 
 simpleCoeffs
 {
-    n           (3 2 1);
+    n           (3 1 2);
     delta       0.001;
 }
 
