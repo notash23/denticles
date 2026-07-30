@@ -17,3 +17,15 @@ This repository aims at simulating the fluid flow on a NACA0012 airfoil that is 
 
 ## Akash Notes
 nothing yet... Akash doesn't really takes notes
+
+## Gökçe Notes
+Well, I generally take notes but they are never organized...
+
+Turbulence properties 
+Parallel computing
+Simulation parameters
+
+- run only airfoil
+- Look for github stuff
+
+**NEW**: I added possible shark designs folder 
