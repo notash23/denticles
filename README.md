@@ -5,7 +5,7 @@ This repository aims at simulating the fluid flow on a NACA0012 airfoil that is 
 ## Akash's curiosity
 - About turbulent flow
     - Steady or Transient: **Probably doing steady so it is less computationally expensive**
-    - RAS or LES
+    - RAS or LES *Gökçe- We need to use RAS if we go with steady-state because LES is time-dependent
     - Find $k$, $\omega$, and $\epsilon$
 - **DONE**: Understand how SnappyHexMesh works
 - Figure out if we can use adaptive mesh refinement
@@ -24,7 +24,9 @@ Turbulence properties
 Parallel computing
 Simulation parameters
 
-- run only airfoil
+- run only airfoil 
 - Look for github stuff
 
 **NEW**: I added possible shark designs folder 
+
+--We need to use RANS because LES 
