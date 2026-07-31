@@ -36,6 +36,12 @@ boundaryField
         type            epsilonWallFunction;
         value           uniform 14.855;
     }
+    
+    airfoil
+    {
+        type            epsilonWallFunction;
+        value           uniform 14.855;
+    }
 }
 
 

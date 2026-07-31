@@ -2,21 +2,19 @@
 #SBATCH --job-name=shark_denticles_%j
 #SBATCH --partition=short
 #SBATCH --time=02:00:00
-#SBATCH --nodes=2 
 #SBATCH --ntasks=128
 #SBATCH --mem=0
 #SBATCH --error=denticles_%j.err.txt
 #SBATCH --output=denticles_%j.out.txt
-#SBATCH --chdir=/home/adwarka/output/
+#SBATCH --chdir=/scratch/adwarka-denticle/output/
 
 #######################
 # Run 'sbatch job.sh' #
 #######################
 
 # Move required files into Local Scratch Storage
-cd /tmp/
-cp -r /scratch/adwarka-denticle/denticles/simulation/airfoil/ .
-cd airfoil
+cp -r /scratch/adwarka-denticle/denticles/simulation/airfoil/ /scratch/adwarka-denticle/
+cd /scratch/adwarka-denticle/
 
 # Load software (if needed) using module load, e.g.
 module load spack

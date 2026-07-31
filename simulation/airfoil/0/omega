@@ -36,6 +36,12 @@ boundaryField
         type            omegaWallFunction;
         value           $internalField;
     }
+
+    airfoil
+    {
+        type            omegaWallFunction;
+        value           $internalField;
+    }
 }
 
 

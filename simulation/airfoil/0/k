@@ -36,6 +36,12 @@ boundaryField
         type            kqRWallFunction;
         value           uniform 0.375;
     }
+
+    airfoil
+    {
+        type            kqRWallFunction;
+        value           uniform 0.375;
+    }
 }
 
 

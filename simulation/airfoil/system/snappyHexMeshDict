@@ -132,7 +132,7 @@ castellatedMeshControls
         airfoil
         {
             // Surface-wise min and max refinement level
-            level (0 8);
+            level (3 8);
             patchInfo { type wall; }
             //- Optional increment (on top of max level) in small gaps
             //gapLevelIncrement 2;
@@ -148,7 +148,7 @@ castellatedMeshControls
     // Feature angle:
     // - used if min and max refinement level of a surface differ
     // - used if feature snapping (see snapControls below) is used
-    resolveFeatureAngle 15;
+    resolveFeatureAngle 25;
 
     //- Optional increment (on top of max level) in small gaps
     //gapLevelIncrement 2;
