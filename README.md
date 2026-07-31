@@ -5,7 +5,7 @@ This repository aims at simulating the fluid flow on a NACA0012 airfoil that is 
 ## Akash's curiosity
 - About turbulent flow
     - Steady or Transient: **Probably doing steady so it is less computationally expensive**
-    - RAS or LES *Gökçe- We need to use RAS if we go with steady-state because LES is time-dependent
+    - RAS or LES **Gökçe- We need to use RAS if we go with steady-state because LES is time-dependent**
     - Find $k$, $\omega$, and $\epsilon$
 - **DONE**: Understand how SnappyHexMesh works
 - Figure out if we can use adaptive mesh refinement
@@ -17,6 +17,8 @@ This repository aims at simulating the fluid flow on a NACA0012 airfoil that is 
 
 ## Akash Notes
 nothing yet... Akash doesn't really takes notes
+
+I found a problem today. If the cpu cores are found in different nodes, it will not run the simulation. I need to read the documentations to fix. I could have been writing the paper right now... But I ran into this problem. Which is good because it means we can scale our simulation even more now.
 
 ## Gökçe Notes
 Well, I generally take notes but they are never organized...

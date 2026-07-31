@@ -7,7 +7,7 @@
 #SBATCH --mem=0
 #SBATCH --error=denticles_%j.err.txt
 #SBATCH --output=denticles_%j.out.txt
-#SBATCH --chdir=/scratch/adwarka-denticle/
+#SBATCH --chdir=/home/adwarka/output/
 
 #######################
 # Run 'sbatch job.sh' #

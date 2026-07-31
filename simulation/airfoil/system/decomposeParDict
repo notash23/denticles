@@ -14,38 +14,13 @@ FoamFile
 }
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
-numberOfSubdomains  64;
-method  multiLevel;
+numberOfSubdomains 128;
+method hierarchical;
 
-multiLevelCoeffs
+hierarchicalCoeffs
 {
-    nodes
-    {
-        numberOfSubdomains 2;
-        method  hierarchical;
-        coeffs
-        {
-            n   (1 1 2);
-        }
-    }
-    cpus
-    {
-        numberOfSubdomains 1;
-        method  hierarchical;
-        coeffs
-        {
-            n   (1 1 1);
-        }
-    }
-    cores
-    {
-        numberOfSubdomains 64;
-        method  hierarchical;
-        coeffs
-        {
-            n   (4 4 4);
-        }
-    }
+    n (4 8 4);
 }
+
 
 // ************************************************************************* //
