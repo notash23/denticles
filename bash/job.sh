@@ -1,32 +1,36 @@
 #!/usr/bin/env bash
-#SBATCH --job-name=shark_denticles_%j                                        # Give the job a name.
-#SBATCH --partition=short                                                    # Use the short partition for quick jobs.
-#SBATCH --time=02:00:00                                                      # Two hour time-limit (format HH:MM:SS).
-#SBATCH --ntasks=32                                                          # 32 CPU cores.
-#SBATCH --mem=0                                                              # All the memory.
-#SBATCH --error=denticles_%j.err.txt                                         # Text file for errors.
-#SBATCH --output=denticles_%j.out.txt                                        # Text file for output.
-#SBATCH --chdir=/scratch/adwarka-denticles/denticles/simulation/airfoil/     # Starting directory.
+#SBATCH --job-name=shark_denticles_%j
+#SBATCH --partition=short
+#SBATCH --time=02:00:00
+#SBATCH --nodes=2 
+#SBATCH --ntasks=128
+#SBATCH --mem=0
+#SBATCH --error=denticles_%j.err.txt
+#SBATCH --output=denticles_%j.out.txt
+#SBATCH --chdir=/scratch/adwarka-denticle/
 
 #######################
 # Run 'sbatch job.sh' #
 #######################
 
+# Move required files into Local Scratch Storage
+cd /tmp/
+cp -r /scratch/adwarka-denticle/denticles/simulation/airfoil/ .
+cd airfoil
+
 # Load software (if needed) using module load, e.g.
 module load spack
 spack env activate foam_env
 
-# Run your program
+# Meshing
 blockMesh
 surfaceFeatureExtract
 decomposePar
-mpiexec -np 32 snappyHexMesh -parallel # TODO: check if I can overwrite
-reconstructParMesh -latestTime 
+mpirun snappyHexMesh -parallel -overwrite
+reconstructParMesh -constant
 
-mv 2/polyMesh/ constant/ # TODO: could use <latestTime> instead of 2
-foamListTimes -rm
-
-mpiexec -np 32 simpleFoam -parallel # TODO: I could use --ntasks instead of 32
+# Simulation
+mpirun simpleFoam -parallel
 reconstructPar -latestTime
 touch foam.foam
 cd ..

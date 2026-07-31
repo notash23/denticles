@@ -13,7 +13,7 @@ This repository aims at simulating the fluid flow on a NACA0012 airfoil that is 
 - Learn more about aerodynamics theory
 - **DONE**: How do we run multicore parallel simulation?
 - Find out if it would be feasible to run an FSI simulation
-- What template should we use for the paper?
+- **GOT IT FROM NIK**: What template should we use for the paper?
 
 ## Akash Notes
 nothing yet... Akash doesn't really takes notes
