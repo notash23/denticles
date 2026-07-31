@@ -22,7 +22,7 @@ FoamFile
 // Which of the steps to run
 castellatedMesh true;
 snap            true;
-addLayers       true;
+addLayers       false;
 
 
 // Optional: single region surfaces get patch names according to
@@ -132,7 +132,7 @@ castellatedMeshControls
         airfoil
         {
             // Surface-wise min and max refinement level
-            level (3 8);
+            level (2 6);
             patchInfo { type wall; }
             //- Optional increment (on top of max level) in small gaps
             //gapLevelIncrement 2;
@@ -148,7 +148,7 @@ castellatedMeshControls
     // Feature angle:
     // - used if min and max refinement level of a surface differ
     // - used if feature snapping (see snapControls below) is used
-    resolveFeatureAngle 25;
+    resolveFeatureAngle 30;
 
     //- Optional increment (on top of max level) in small gaps
     //gapLevelIncrement 2;

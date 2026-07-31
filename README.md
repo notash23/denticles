@@ -16,9 +16,13 @@ This repository aims at simulating the fluid flow on a NACA0012 airfoil that is 
 - **GOT IT FROM NIK**: What template should we use for the paper?
 
 ## Akash Notes
-nothing yet... Akash doesn't really takes notes
-
 I found a problem today. If the cpu cores are found in different nodes, it will not run the simulation. I need to read the documentations to fix. I could have been writing the paper right now... But I ran into this problem. Which is good because it means we can scale our simulation even more now.
+
+I understood what it was. I was trying to be smart and brought the files into the tmp folder because they are the fastest. But once the processor were on different nodes, they could not read each other's files.
+
+I want to figure out how to make snappyHexMesh even faster. I need to make it work stop shell refinement earlier because it gets stuck with the same cells.
+
+I will also try to improve the stl files
 
 ## Gökçe Notes
 Well, I generally take notes but they are never organized...
