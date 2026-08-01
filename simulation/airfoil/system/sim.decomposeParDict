@@ -14,14 +14,8 @@ FoamFile
 }
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
-numberOfSubdomains 6;
-
-method          hierarchical;
-
-hierarchicalCoeffs
-{
-    n           (1 3 2);
-}
+numberOfSubdomains 128;
+method scotch;
 
 
 // ************************************************************************* //

@@ -52,13 +52,6 @@ geometry
         type distributedTriSurfaceMesh;
         name airfoil;
     }
-
-    // refinement1
-    // {
-    //     type searchableBox;
-    //     min (-10 -110 -35);
-    //     max (423 110 35);
-    // }
 };
 
 
@@ -72,14 +65,14 @@ castellatedMeshControls
     // If local number of cells is >= maxLocalCells on any processor
     // switches from from refinement followed by balancing
     // (current method) to (weighted) balancing before refinement.
-    maxLocalCells 1000000;
+    maxLocalCells 5000000;
 
     // Overall cell limit (approximately). Refinement will stop immediately
     // upon reaching this number so a refinement level might not complete.
     // Note that this is the number of cells before removing the part which
     // is not 'visible' from the keepPoint. The final number of cells might
     // actually be a lot less.
-    maxGlobalCells 20000000;
+    maxGlobalCells 1000000000;
 
     // The surface refinement loop might spend lots of iterations refining just
     // a few cells. This setting will cause refinement to stop if
@@ -139,22 +132,8 @@ castellatedMeshControls
         airfoil
         {
             // Surface-wise min and max refinement level
-            level (0 6);
-            /* Akash
-            We could have local refinement like so:
-            regions
-            {
-                denticleRegion
-                {
-                    level (4 4);
-
-                    patchInfo
-                    {
-                        type wall;
-                    }
-                }
-            }
-            */
+            level (2 6);
+            patchInfo { type wall; }
             //- Optional increment (on top of max level) in small gaps
             //gapLevelIncrement 2;
 
@@ -273,7 +252,7 @@ castellatedMeshControls
 
     // Ad 1. Specify a single location and how to treat faces inbetween
     //       cellZones
-    locationInMesh (-50 0 0);
+    locationInMesh (-0.2 0 0);
 
     // Whether any faceZones (as specified in the refinementSurfaces)
     // are only on the boundary of corresponding cellZones.
