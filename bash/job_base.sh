@@ -15,12 +15,16 @@
 set -e
 
 # Move required files into Parallel Scratch Storage
-cp -r /scratch/adwarka-denticle/denticles/simulation/airfoil/ /scratch/adwarka-denticle/airfoil/
-cd /scratch/adwarka-denticle/airfoil/
+cp -r /scratch/adwarka-denticle/denticles/simulation/airfoil/ /scratch/adwarka-denticle/base/
+cd /scratch/adwarka-denticle/base/
 
 # Load software (if needed) using module load, e.g.
 module load spack
 spack env activate foam_env
+
+# Using base STL
+rm constant/triSurface/airfoil.stl
+mv constant/triSurface/_airfoil.stl constant/triSurface/airfoil.stl
 
 # Meshing
 blockMesh
@@ -40,4 +44,4 @@ reconstructPar
 rm -r processor*
 touch foam.foam
 cd ..
-tar -czf airfoil.tar.gz airfoil/
+tar -czf base.tar.gz base/
