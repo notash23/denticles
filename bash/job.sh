@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-#SBATCH --job-name=shark_denticles
+#SBATCH --job-name=shark_denticles_%j
 #SBATCH --partition=short
 #SBATCH --time=02:00:00
 #SBATCH --ntasks=128
