@@ -132,7 +132,7 @@ castellatedMeshControls
         airfoil
         {
             // Surface-wise min and max refinement level
-            level (2 6);
+            level (3 8);
             patchInfo { type wall; }
             //- Optional increment (on top of max level) in small gaps
             //gapLevelIncrement 2;
@@ -333,7 +333,7 @@ snapControls
 {
     // Number of patch smoothing iterations before finding correspondence
     // to surface
-    nSmoothPatch 3;
+    nSmoothPatch 4;
 
     // Optional: number of smoothing iterations for internal points on
     // refinement interfaces. This will reduce non-orthogonality on
@@ -342,14 +342,14 @@ snapControls
 
     // Maximum relative distance for points to be attracted by surface.
     // True distance is this factor times local maximum edge length.
-    tolerance 1.0; // 2.0
+    tolerance 2.0; // 2.0
 
     // Number of mesh displacement relaxation iterations.
-    nSolveIter 30; // 100
+    nSolveIter 100; // 100
 
     // Maximum number of snapping relaxation iterations. Should stop
     // before upon reaching a correct mesh.
-    nRelaxIter 5; // 20
+    nRelaxIter 20; // 20
 
     // (wip) disable snapping to opposite near surfaces (revert to 22x
     //  behaviour)
@@ -360,7 +360,7 @@ snapControls
 
     // Number of feature edge snapping iterations.
     // Leave out altogether to disable.
-    nFeatureSnapIter 10; // 100
+    nFeatureSnapIter 100; // 100
 
     // Detect (geometric only) features by sampling the surface
     // (default=false).
@@ -428,12 +428,12 @@ addLayersControls
     //       mode on a per-patch basis (only the values can be overridden)
 
     // Expansion factor for layer mesh
-    expansionRatio 1.2;
+    expansionRatio 1.5;
 
     // Wanted thickness of the layer furthest away from the wall.
     // If relativeSizes this is relative to undistorted size of cell
     // outside layer.
-    finalLayerThickness 0.3;
+    finalLayerThickness 0.5;
 
     // Wanted thickness of the layer next to the wall.
     // If relativeSizes this is relative to undistorted size of cell
@@ -464,7 +464,7 @@ addLayersControls
         {
             nSurfaceLayers 20;
         }
-        aerofoil
+        airfoil
         {
             nSurfaceLayers 20;
         }

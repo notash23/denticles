@@ -30,11 +30,11 @@ decomposePar
 mpirun snappyHexMesh -parallel -overwrite
 reconstructParMesh -constant
 rm -r processor*
+
+# Simulation
 mv system/decomposeParDict system/snappy.decomposeParDict
 mv system/sim.decomposeParDict system/decomposeParDict
 decomposePar
-
-# Simulation
 mpirun simpleFoam -parallel
 reconstructPar
 rm -r processor*
