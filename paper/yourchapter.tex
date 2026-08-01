@@ -35,6 +35,22 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+%Useful examples:     I didnt wanna just delete the some templates because we might need to use them later.
+
+%\footnote{If you copy text passages, figures, or tables from other works, you must obtain \textit{permission} from the copyright holder (usually the original publisher). Please enclose the signed permission with the manuscript. The sources\index{permission to print} must be acknowledged either in the captions, as footnotes or in a separate section of the book.}
+%\textit{tilted word}
+
+%\begin{quotation}
+% Please do not use quotation marks when quoting texts! Simply use the \verb|quotation| environment -- it will automatically be rendered in line with the preferred layout.
+%\end{quotation}
+
+% \LaTeX\ 
+% \ref{sec:2}.
+
+
+
+
+
 \begin{document}
 
 \title*{Drag reduction from different of shark denticles}
@@ -69,7 +85,7 @@ Instead of simply listing headings of different levels we recommend to let every
 
 This is how you \cite{slavova2022edge} articles.
 
-\section{Data and Methodologies}
+\section{Data and Methodology}
 \label{sec:3}
 % Always give a unique label
 % and use \ref{<label>} for cross-references
@@ -78,57 +94,61 @@ This is how you \cite{slavova2022edge} articles.
 % to alter or adjust the section heading in the running head
 Please include a brief intro for your process of gathering data, which methods you used, and/or why you chose these datasets and methods.
 
+Fusion 360,cripting, openfoam -simulation properties, paraview, some calculation, some comparison and some graphs here.
+Dahası var mı yoksa yine mi compile etmem lazım????"
 
-\subsection{Data Collection}
+In this research we did numerical experiments with openfoam to get rid of scaling problem that most of the experiments are facing because of the manufacturing limits.
+Also, we designed the denticles inspirated from [idk some resource] on fusion 360. Also we parametrized the design by scripting the denticles models to control the parameters better. 
+Also, if anyone wants to replicate this paper, they are welcome to use the script to create the denticle models.
+Pictures of denticles with the name of the sharks and tehnical drawings of them.
+
+Then, we ran the simulations exactly with the exactly same parameters to this paper [cite the paper.] on OpenFoam
+The openFoam folders will be available.
+!Mention that we scaled the denticles same with the paper because their denticle size is about 60 times bigger. [cite the paper]
+Some formulas to show how we calculated the drag coefficient, etc. 
+Then redo the simulation with actual denticle size. --Maybe we might need to change the angle of attack to be able see the drag better. Detect the best angle from the paper for drag reduction
+
+We replaced it with other type of denticles and compare the results between denticles. 
+
+
+\subsection{Data Collection --Maybe we should change the name???}
 \label{subsec:2}
-This subsection is for describing your data collection. The different parts can be separated by types of data (spreadsheets? satellite images?) or categories of data (economic data? historical data?) , or however seems fit for your project.
 
-\begin{quotation}
-Please do not use quotation marks when quoting texts! Simply use the \verb|quotation| environment -- it will automatically be rendered in line with the preferred layout.
-\end{quotation}
+General description of what is coming- simulation properties and how did we set up paraview.
+We have data of smooth airfoil (airfoil without denticle), scenario a for [cite paper here] which is a row of denticles located at the L= (id remember the val) on NACA 0012 airfoil with 0 degree angle of attack. 
+We will have more data. Coming...
 
-\subsubsection{Data Collection Section 1}
+
+\subsubsection{Simulation Setup}
 \label{subsec:3}
-Feel free to use images, tables, etc.
+All tecnical drawing of denticle 
 
-Please note that the first line of text that follows a heading is not indented, whereas the first lines of all subsequent paragraphs are.
+Measurement of airfoil 
+
+Properties of simulation and turbulence, solver etc.
 
 
-\subsubsection{Data Collection Section 2}
+\subsubsection{Postprocessing}
 \label{subsec:4}
-Include any additional images, tables, data etc. 
+Talk about how to make calculation or how to use paraview etc. 
 
-Please note that the first line of text that follows a heading is not indented, whereas the first lines of all subsequent paragraphs are.
-
-\begin{figure}[ht]
-  \centering
-  \includegraphics[width=.7\textwidth]{figure}
-  \caption{Figures should always have a caption.}
-  \label{fig:1}
-\end{figure}
+%\begin{figure}[ht]
+%  \centering
+%  \includegraphics[width=.7\textwidth]{figure}
+%  \caption{Figures should always have a caption.}
+%  \label{fig:1}
+%\end{figure}
 
 
-\subsection{Methods}
+\subsection{Experiment or Methods or idk}
 \label{subsec:5}
-Please describe the methods you used in this subsection. This can include: what platforms did you use? what coding languages? did you use AI? what AI model? Did you use any libraries? etc. Also, we only added two subsections but feel free to add more. ~\ref{sec:2}.
 
-\begin{quotation}
-Please do not use quotation marks when quoting texts! Simply use the \verb|quotation| environment -- it will automatically be rendered in line with the preferred layout.
-\end{quotation}
+Tamam simulasyon falan hazır da nereye konumlandırdın denticleları ya da koyduğun geometriyi nasıl kombinasyonlarda koydun. 
 
 
 \subsubsection{Method Subsection 1}
-Again, feel free to add any images, tables, etc.
-Instead of simply listing headings of different levels we recommend to let every heading be followed by at least a short passage of text.  Further on please use the \LaTeX\ automatism for all your cross-references and citations as has already been described in Sect.~\ref{subsec:2}, see also Fig.~\ref{fig:1}\footnote{If you copy text passages, figures, or tables from other works, you must obtain \textit{permission} from the copyright holder (usually the original publisher). Please enclose the signed permission with the manuscript. The sources\index{permission to print} must be acknowledged either in the captions, as footnotes or in a separate section of the book.}
+sth sth sth --We might not need this one.
 
-Please note that the first line of text that follows a heading is not indented, whereas the first lines of all subsequent paragraphs are.
-
-
-\subsubsection{Method Subsection 2}
-Again, feel free to add any images, tables, etc.
-Instead of simply listing headings of different levels we recommend to let every heading be followed by at least a short passage of text.  Further on please use the \LaTeX\ automatism for all your cross-references and citations as has already been described in Sect.~\ref{sec:2}.
-
-Please note that the first line of text that follows a heading is not indented, whereas the first lines of all subsequent paragraphs are.
 
 \section{Results}
 \label{sec:4}
@@ -140,9 +160,22 @@ Please note that the first line of text that follows a heading is not indented, 
 Provide a description of main findings in chronological order of the data represented in the methods section. Include a summary of research findings. Repeat questions to help readers understand results. Additionally, include a report about information collection, participants, and recruitment.
 
 Show data presented in tables, charts, graphs, and other figures.
+
+Put graphs or picture from the replicated scenario of the reference paper. 
+Put numbers of results
+Put numbers of comparison 
+Compare and make comments 
+
+
  
-\subsubsection{Subsubsection Heading}
-Instead of simply listing headings of different levels we recommend to let every heading be followed by at least a short passage of text.  Further on please use the \LaTeX\ automatism for all your cross-references and citations as has already been described in Sect.~\ref{sec:2}.
+\subsubsection{Validation of simulation}
+
+
+Here will be comparison of the replicated simulation and the reference paper. 
+
+\subsubsection{Comparison of across denticles}
+
+Here will be comparison of different denticle models.
 
 \section{Conclusion}
 \label{sec:5}
@@ -151,27 +184,27 @@ Instead of simply listing headings of different levels we recommend to let every
 % and \cite{<label>} for bibliographic references
 % use \sectionmark{}
 % to alter or adjust the section heading in the running head
-Please use this section to describe the applications of your findings. Can this be used in other fields? What are some concerns or problems with your results? What are the next steps, if you plan to continue the project after the summer? etc. Again, we added two subsections but feel free to add more.
+Conclusion will be addeed later. 
 
 \subsection{Applications} %
-In order to avoid simply listing headings of different levels we recommend to let every heading be followed by at least a short passage of text. Use the \LaTeX\ automatism for all your cross-references and citations citations as has already been described in Sect.~\ref{sec:2}.
+Application fields will be added later.
 
-Please note that the first line of text that follows a heading is not indented, whereas the first lines of all subsequent paragraphs are.
+\subsection{Concerns and Future Work} %
+Concerns and future work will be added later. s
 
-\subsection{Concerns and Next Steps} %
-Instead of simply listing headings of different levels we recommend to let every heading be followed by at least a short passage of text.  Further on please use the \LaTeX\ automatism for all your cross-references and citations as has already been described in Sect.~\ref{sec:2}.
-
-Note that the first line of text that follows a heading is not indented, whereas the first lines of all subsequent paragraphs are.
-%
 
 \begin{acknowledgement}
-If you want to include acknowledgments of assistance and the like at the end of an individual chapter please use the \verb|acknowledgement| environment -- it will automatically be rendered in line with the preferred layout.
+We can add an acknowledgement, thank you for Teuscher lab and opportunity that they provided us to have remote research etc. etc.
+
+  If you want to include acknowledgments of assistance and the like at the end of an individual chapter please use the \verb|acknowledgement| environment -- it will automatically be rendered in line with the preferred layout.
 \end{acknowledgement}
 
 
 
 % Bibliography
-\bibliography{yourchapter}
+\bibliography{yourchapter} 
 \bibliographystyle{plain}
+
+
 
 \end{document}

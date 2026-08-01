@@ -22,7 +22,7 @@ FoamFile
 // Which of the steps to run
 castellatedMesh true;
 snap            true;
-addLayers       false;
+addLayers       true;
 
 
 // Optional: single region surfaces get patch names according to
@@ -252,7 +252,7 @@ castellatedMeshControls
 
     // Ad 1. Specify a single location and how to treat faces inbetween
     //       cellZones
-    locationInMesh (-50 0 0);
+    locationInMesh (-0.2 0 0);
 
     // Whether any faceZones (as specified in the refinementSurfaces)
     // are only on the boundary of corresponding cellZones.
