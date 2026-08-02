@@ -53,7 +53,8 @@
 
 \begin{document}
 
-\title*{Drag reduction from different of shark species denticles at high Reynolds number using RAS models}
+% \title*{Drag reduction from different shark species denticles at high Reynolds number using RAS models}
+\title*{Drag reduction of different shark species denticles}
 % Use \titlerunning{Short Title} for an abbreviated version of
 % your contribution title if the original one is too long
 \author{Gökçe Atacan and Akash Tejveer Dwarka}
@@ -92,8 +93,7 @@ We then compared the drag reduction ($\nu$) by simulation the fluid flow using t
 
 \textbf{Theory} As described in the introduction, a suggested theory for why denticles helps with reducing drag is by mitigating fluid flowing perpendicular to the mean velocity which is described as turbulent crossflow by Berchert \cite{bechert_experiments_1997}. However, this does not describe the full picture. Another concept that might contribute to this effect is the riblets lifting the streamwise vortices \cite{graybill_experimental_2024}.
 
-
-\textbf{Experiments}
+\textbf{Experiments} Earlier tests of denticles usually simplified the structure and placed riblet channels on the surfaces. It was found that even these riblets caused a drag reduction of up to 10\% \cite{bechert_experiments_1997}.
 
 \textbf{Simulations}
 
@@ -113,45 +113,77 @@ MAKE TABLE
 % and \cite{<label>} for bibliographic references
 % use \sectionmark{}
 % to alter or adjust the section heading in the running head
-Please include a brief intro for your process of gathering data, which methods you used, and/or why you chose these datasets and methods.
 
-Fusion 360,cripting, openfoam -simulation properties, paraview, some calculation, some comparison and some graphs here.
-Dahası var mı yoksa yine mi compile etmem lazım????"
-
-In this research we did numerical experiments with openfoam to get rid of scaling problem that most of the experiments are facing because of the manufacturing limits.
-Also, we designed the denticles inspirated from [idk some resource] on fusion 360. Also we parametrized the design by scripting the denticles models to control the parameters better. 
-Also, if anyone wants to replicate this paper, they are welcome to use the script to create the denticle models.
-Pictures of denticles with the name of the sharks and tehnical drawings of them.
-
-Then, we ran the simulations exactly with the exactly same parameters to this paper [cite the paper.] on OpenFoam
-The openFoam folders will be available.
-!Mention that we scaled the denticles same with the paper because their denticle size is about 60 times bigger. [cite the paper]
-Some formulas to show how we calculated the drag coefficient, etc. 
-Then redo the simulation with actual denticle size. --Maybe we might need to change the angle of attack to be able see the drag better. Detect the best angle from the paper for drag reduction
-
-We replaced it with other type of denticles and compare the results between denticles. 
+In this study, we investigated the drag coefficient of shark denticles using a computational fluid dynamics (CFD) simulation in OpenFOAM. 
+The denticle geometry was modeled based on micro-CT scans to ensure realistic representation in the domain. 
+First, we validated the simulation workflow by comparing lift and drag values and drag rates by replicating case (a) of the paper from Guo et. al. \cite{guo_experimental_2023}. 
+We created the mesh of the geometry in OpenFOAM using the snappyHexMesh utility targeting a near-wall $y^+\approx 1 $ to catch boundary layer behavior. 
+We modeled the flow as steady-state and incompressible flow with the $k-\omega \ SST$ turbulence model. 
+One of the main objectives of this study is to create a simulation that is as close to reality as possible. 
+For this reason, water was used for the fluid with density, $\rho = 1000 kg/m^3$, and kinematic viscosity, $\mu = 1e-6 m^2/s$ at $20 ^\circ C$. 
+Because the simulation ran in steady state, we utilized simpleFoam as a solver. 
+Then, post-processing of the result was executed in ParaView to obtain the lift and drag forces. 
 
 
-\subsection{Data Collection --Maybe we should change the name???}
+\subsection{Shark Denticle Geometry}
 \label{subsec:2}
 
-General description of what is coming- simulation properties and how did we set up paraview.
-We have data of smooth airfoil (airfoil without denticle), scenario a for [cite paper here] which is a row of denticles located at the L= (id remember the val) on NACA 0012 airfoil with 0 degree angle of attack. 
-We will have more data. Coming...
+We designed the 3D shark denticle inspired by computed tomography (CT) scan data reported in previous studies \cite{lloyd_hydrodynamic_2021, patricia_morphological_2019}. 
+To ensure reproducibility of this study, the 3D models were parameterized using a custom script developed in the Fusion 360 CAD program. 
+If anyone wants to replicate this research, the parametric design script is made publicly available in Appendix A. 
+Technical drawings illustrating the denticle profiles for the four investigated species are shown in Fig. [X]. 
 
+-	Shortfin Mako shark technical drawing (\textit{Isurus oxyrinchus})
 
-\subsubsection{Simulation Setup}
+-	Blacktip shark technical drawing (\textit{Carcharhinus limbatus})
+
+-	White Shark Technical Drawing (\textit{Carcharodon carcharias})
+
+-	Smooth dogfish shark Technical Drawing (\textit{Mustelus canis})
+
+\subsection{Validation of simulation}
 \label{subsec:3}
-All tecnical drawing of denticle 
 
-Measurement of airfoil 
+The NACA 0012 (National Advisory Committee for Aeronautics) airfoils are widely used in marine engineering, aviation, and machinery research to due it’s simple geometry {cite the papers that used it}. 
+The airfoil has a symmetrical cross-section with a maximum relative thickness of $12\%$ and an aspect cord ratio of W/L=2, where L represents the chord length, and W denotes the span length. 
+The dimensions of the NACA 0012 airfoil in this research are L=408 and W=200. 
+While real shortfin mako denticles are on the micrometer scale, the simulation that we are referencing by Gao et. al. \cite{guo_experimental_2023} set up a physical experiment and encountered today's manufacturing limits. 
+To overcome these limitations, the denticle geometry was scaled 60 times.  
+To maintain the same conditions as this benchmark study \cite{guo_experimental_2023}, we adopted the same $60\times$ scaled-up denticle dimensions.    
+Following the specification for Case (a) in \cite{guo_experimental_2023}, we positioned a row of shortfin mako shark denticles along the NACA 0012 airfoil at 0.1L from the leading edge. 
+However, Gao et. al. evaluated various flow velocities and angles of attack. 
+For simplicity, we selected an inlet velocity, U = 0.5 m/s, and a 0-degree angle of attack.
+The benchmark study calculated both drag coefficient ($C_D$) and the drag rate percentage.
+To achieve this purpose, Guo et. al. also performed simulations on a smooth airfoil which means airfoil without denticles attached on it. 
+Therefore, we replicated both the smooth airfoil and denticle-equipped airfoil from Case (a). 
 
-Properties of simulation and turbulence, solver etc.
+~~add the Picture from Fusion here! 
+ 
 
 
-\subsubsection{Postprocessing}
+\subsection{Postprocessing}
 \label{subsec:4}
-Talk about how to make calculation or how to use paraview etc. 
+Post-processing and data extraction were conducted using ParaView. 
+To evaluate the lift and drag forces acting on the model, we extracted pressure value. 
+Lift was determined from the multiplication of pressure and viscous shear forces acting perpendicular to the freestream direction, while drag was computed from the forces aligned parallel to the flow vector.
+The drag coefficient ($C_D$) and the lift coefficient ($C_L$) were calculated using extracted following the methodology in \cite{guo_experimental_2023}
+
+\begin{equation}
+    C_D = \frac{2 F_D}{\rho A U^2}
+\end{equation}
+
+\begin{equation}
+    C_L = \frac{2 F_L}{\rho A U^2}
+\end{equation}
+
+where $F_D$ and $F_L$ are the total drag and lift forces, respectively, $\rho$ is the fluid density ($\rho = 1\text{ kg/m}^3$), $U$ is the freestream velocity, and $A$ is the cross sectional area, defined as $A = W \cdot L$
+Furthermore, the formula for the drag reduction rate is structured as follows:
+
+\begin{equation}
+     \eta = \frac{C_{D_s} - C_{D_m}}{C_{D_s}}\times 100\%
+\end{equation}
+
+where $C_{D_s}$ is the drag coefficient of smooth airfoil while $C_{D_m}$ is the drag coefficient of airfoil with row of denticle attached on it.
 
 %\begin{figure}[ht]
 %  \centering
@@ -159,16 +191,6 @@ Talk about how to make calculation or how to use paraview etc.
 %  \caption{Figures should always have a caption.}
 %  \label{fig:1}
 %\end{figure}
-
-
-\subsection{Experiment or Methods or idk}
-\label{subsec:5}
-
-Tamam simulasyon falan hazır da nereye konumlandırdın denticleları ya da koyduğun geometriyi nasıl kombinasyonlarda koydun. 
-
-
-\subsubsection{Method Subsection 1}
-sth sth sth --We might not need this one.
 
 
 \section{Results}
