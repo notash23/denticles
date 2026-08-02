@@ -56,11 +56,11 @@
 \title*{Drag reduction from different of shark denticles}
 % Use \titlerunning{Short Title} for an abbreviated version of
 % your contribution title if the original one is too long
-\author{Gökçe Atacan and Dwarka Akash Tejveer}
+\author{Gökçe Atacan and Akash Tejveer Dwarka}
 % Use \authorrunning{Short Title} for an abbreviated version of
 % your contribution title if the original one is too long
 \institute{Gökçe Atacan \at Lycoming College, Pennsylvania, \email{atagokc@lycoming.edu}
-\and Dwarka Akash Tejveer \at Lycoming College, Pennsylvania \email{dwaakas@lycoming.edu}}
+\and Akash Tejveer Dwarka \at Lycoming College, Pennsylvania \email{dwaakas@lycoming.edu}}
 %
 % Use the package "url.sty" to avoid
 % problems with special characters
@@ -73,17 +73,38 @@
 
 \section{Introduction}
 \label{sec:1}
-This is a test
 
-Introduce your project! You can perhaps include what led you to choose this topic, or why you chose this certain project idea instead of other similar ideas.
+Whether it is through air or water, reducing a body's resistive forces is usually one of the goals while designing a vehicle. The majority of the resistive force is drag. In fact, it is so relevant with trading ships that it contributes to around 70\% of the resistive forces \cite{lindholdt_effects_2015}. Reducing this figure would cause a trickle-down effects to shipping and transport costs. 
 
-Instead of simply listing headings of different levels we recommend to let every heading be followed by at least a short passage of text.  Further on please use the \LaTeX\ automatism for all your cross-references and citations. And please note that the first line of text that follows a heading is not indented, whereas the first lines of all subsequent paragraphs are.
+Reif among others have established at least four decades ago that shark skins can reduce drag \cite{reif_morphogenesis_1982}. These are shark denticles: tiny scale-like structures that prevent fluids from detaching from their surface. These structures are on the submillimeter scale that seems to reduce drag by up to 9.9\% \cite{bechert_experiments_1997}. However, further experiments showed drag reduction of up to 25.4\% \cite{guo_experimental_2023}.
+
+While experiments have shown how shark denticles reduce drag, there are also theories that suggest how they do so. Near the surface of the skin, the fluid flowing along mean velocity stays attached. However, the fluid might get detached an flow along the perpendicular direction \cite{bechert_experiments_1997}. The shark denticles have riblets that stops these perpendicular components and rectify the fluid along the mean velocity keeping the flow attached \cite{guo_experimental_2023}. This then reduces shear-stresses and reduces drag.
+
+Most experiments and simulations, however, simplify the denticles that simple grooves. While there were effort to replicate denticles as a three-dimensional structure, they base themselves on one species of shark: \textit{Isurus oxyrinchus}. Despite being the fastest shark, there is merit to studying other species' denticles \cite{graybill_experimental_2024}.
+
+By referring to Scanning Electron Microscope (SEM) and micro-CT scan models of denticles from different shark species, we created denticles models for shortfin mako (\textit{Isurus oxyrinchus}), smooth dogfish sharks (\textit{Mustelus canis}), blacktip shark (\textit{Carcharhinus limbatus}), and White shark (\textit{Carcharodon carcharias}) \cite{ankhelyi_diversity_2018}. We created the models using the measurements of key features such as the crown length, crown width, riblet spacing, and ridge depth.
+
+We then compared the drag reduction ($\nu$) by simulation the fluid flow using the $k\omega$-SST model at different fluid speeds. We placed a row of denticles on a NACA0012 airfoil. We then created a generic shark model and placed the denticles on its fins, tails and snout to determine whether the type of denticles causes significant reduction in drag.
 
 \section{Related Work and Background}
 \label{sec:2}
-Use this section to go over any research papers you found useful in your project, or any papers that are relevant to your project topic.
 
-Instead of simply listing headings of different levels we recommend to let every heading be followed by at least a short passage of text.  Further on please use the \LaTeX\ automatism for all your cross-references and citations. And please note that the first line of text that follows a heading is not indented, whereas the first lines of all subsequent paragraphs are.
+\textbf{Title} This is how they did it
+
+How is the mechanism helpful in turbulent flow (READ https://royalsocietypublishing.org/rsif/article/15/147/20180473/35940/Passive-bristling-of-mako-shark-scales-in)
+
+Explain different experiments. CITES
+
+Explain different simulations
+
+Difficulties with experiments and scales CITE-REVIEW
+(Recreation methods by Zhang et al.)
+
+Refer previous drag reduction values CITES
+MAKE TABLE
+
+Refer to paper with denticle measurements
+MAKE TABLE
 
 \section{Data and Methodology}
 \label{sec:3}
