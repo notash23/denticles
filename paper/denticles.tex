@@ -53,18 +53,15 @@
 
 \begin{document}
 
-\title*{Drag reduction from different of shark denticles}
+\title*{Drag reduction from different of shark species denticles at high Reynolds number using RAS models}
 % Use \titlerunning{Short Title} for an abbreviated version of
 % your contribution title if the original one is too long
 \author{Gökçe Atacan and Akash Tejveer Dwarka}
 % Use \authorrunning{Short Title} for an abbreviated version of
 % your contribution title if the original one is too long
 \institute{Gökçe Atacan \at Lycoming College, Pennsylvania, \email{atagokc@lycoming.edu}
-<<<<<<< HEAD
 \and Akash Tejveer Dwarka \at Lycoming College, Pennsylvania \email{dwaakas@lycoming.edu}}
-=======
-\and Akash Tejveer Dwarka\at Lycoming College, Pennsylvania \email{dwaakas@lycoming.edu}
->>>>>>> 4c9d60a064c8f01bd707f9af4849ff6bbf3dd34a
+
 %
 % Use the package "url.sty" to avoid
 % problems with special characters
@@ -82,32 +79,31 @@ Whether it is through air or water, reducing a body's resistive forces is usuall
 
 Reif among others have established at least four decades ago that shark skins can reduce drag \cite{reif_morphogenesis_1982}. These are shark denticles: tiny scale-like structures that prevent fluids from detaching from their surface. These structures are on the submillimeter scale that seems to reduce drag by up to 9.9\% \cite{bechert_experiments_1997}. However, further experiments showed drag reduction of up to 25.4\% \cite{guo_experimental_2023}.
 
-While experiments have shown how shark denticles reduce drag, there are also theories that suggest how they do so. Near the surface of the skin, the fluid flowing along mean velocity stays attached. However, the fluid might get detached an flow along the perpendicular direction \cite{bechert_experiments_1997}. The shark denticles have riblets that stops these perpendicular components and rectify the fluid along the mean velocity keeping the flow attached \cite{guo_experimental_2023}. This then reduces shear-stresses and reduces drag.
+While experiments have shown how shark denticles reduce drag, there are also theories that suggest how they do so. Near the surface of the skin, the fluid flowing along mean velocity stays attached. However, the fluid might get detached and flow along the perpendicular direction \cite{bechert_experiments_1997}. Berchert suggests that the shark denticles have riblets that stop these perpendicular components and rectify the fluid along the mean velocity keeping the flow attached \cite{guo_experimental_2023}. This then reduces shear-stresses and resultantly drag.
 
 Most experiments and simulations, however, simplify the denticles that simple grooves. While there were effort to replicate denticles as a three-dimensional structure, they base themselves on one species of shark: \textit{Isurus oxyrinchus}. Despite being the fastest shark, there is merit to studying other species' denticles \cite{graybill_experimental_2024}.
 
 By referring to Scanning Electron Microscope (SEM) and micro-CT scan models of denticles from different shark species, we created denticles models for shortfin mako (\textit{Isurus oxyrinchus}), smooth dogfish sharks (\textit{Mustelus canis}), blacktip shark (\textit{Carcharhinus limbatus}), and White shark (\textit{Carcharodon carcharias}) \cite{ankhelyi_diversity_2018}. We created the models using the measurements of key features such as the crown length, crown width, riblet spacing, and ridge depth.
 
-We then compared the drag reduction ($\nu$) by simulation the fluid flow using the $k\omega$-SST model at different fluid speeds. We placed a row of denticles on a NACA0012 airfoil. We then created a generic shark model and placed the denticles on its fins, tails and snout to determine whether the type of denticles causes significant reduction in drag.
+We then compared the drag reduction ($\nu$) by simulation the fluid flow using the SST $k-\omega$ model at different fluid speeds. We placed a row of denticles on a NACA0012 airfoil. We then created a generic shark model and placed the denticles on its fins, tails and snout to determine whether the type of denticles causes significant reduction in drag. 
 
 \section{Related Work and Background}
 \label{sec:2}
 
-\textbf{Title} This is how they did it
+\textbf{Theory} As described in the introduction, a suggested theory for why denticles helps with reducing drag is by mitigating fluid flowing perpendicular to the mean velocity which is described as turbulent crossflow by Berchert \cite{bechert_experiments_1997}. However, this does not describe the full picture. Another concept that might contribute to this effect is the riblets lifting the streamwise vortices \cite{graybill_experimental_2024}.
 
-How is the mechanism helpful in turbulent flow (READ https://royalsocietypublishing.org/rsif/article/15/147/20180473/35940/Passive-bristling-of-mako-shark-scales-in)
 
-Explain different experiments. CITES
+\textbf{Experiments}
 
-Explain different simulations
+\textbf{Simulations}
 
-Difficulties with experiments and scales CITE-REVIEW
+\textbf{Experimental imitations and current alternatives}
 (Recreation methods by Zhang et al.)
 
-Refer previous drag reduction values CITES
+\textbf{Previous results}
 MAKE TABLE
 
-Refer to paper with denticle measurements
+\textbf{Denticle measurements}
 MAKE TABLE
 
 \section{Data and Methodology}

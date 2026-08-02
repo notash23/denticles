@@ -45,6 +45,9 @@ log.*
 *.synctex(busy)
 *.synctex.gz
 *.synctex.gz(busy)
+*idx
+*ilg
+*ind
 *.pdfsync
 *.rubbercache
 rubber.cache
