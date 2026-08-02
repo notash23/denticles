@@ -48,7 +48,7 @@
 % \ref{sec:2}.
 
 
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
 \begin{document}
@@ -92,23 +92,15 @@ This is how you \cite{slavova2022edge} articles.
 % and \cite{<label>} for bibliographic references
 % use \sectionmark{}
 % to alter or adjust the section heading in the running head
-Please include a brief intro for your process of gathering data, which methods you used, and/or why you chose these datasets and methods.
 
-Fusion 360,cripting, openfoam -simulation properties, paraview, some calculation, some comparison and some graphs here.
-Dahası var mı yoksa yine mi compile etmem lazım????"
-
-In this research we did numerical experiments with openfoam to get rid of scaling problem that most of the experiments are facing because of the manufacturing limits.
-Also, we designed the denticles inspirated from [idk some resource] on fusion 360. Also we parametrized the design by scripting the denticles models to control the parameters better. 
-Also, if anyone wants to replicate this paper, they are welcome to use the script to create the denticle models.
-Pictures of denticles with the name of the sharks and tehnical drawings of them.
-
-Then, we ran the simulations exactly with the exactly same parameters to this paper [cite the paper.] on OpenFoam
-The openFoam folders will be available.
-!Mention that we scaled the denticles same with the paper because their denticle size is about 60 times bigger. [cite the paper]
-Some formulas to show how we calculated the drag coefficient, etc. 
-Then redo the simulation with actual denticle size. --Maybe we might need to change the angle of attack to be able see the drag better. Detect the best angle from the paper for drag reduction
-
-We replaced it with other type of denticles and compare the results between denticles. 
+In this study, we investigated the shark denticles by utilizing a computational fluid dynamics simulation in OpenFOAM. 
+We designed the shark denticles inspired by CP scans to use them in the simulation. 
+Firstly, to validate the simulation by replicating case (a) of this paper [reference the paper]. 
+We set up a mesh in OpenFOAM using the snappyHexMesh tool (folder?dictionary?). 
+Because the simulation ran in steady state, we utilized simpleFoam as a solver. 
+One of the main objectives of this study is to create a simulation that is as close to reality as possible. 
+For this reason, we used the Newtonian transport model in transportProperties. Newtonian assumes viscosity stays constant regardless of the shear rate (e.g., water, air) [reference]. 
+–Beğenmedim bunu ya incompressible flow ve fluid density 1 kg/m^3 kullandık desek daha iyi gibi. 
 
 
 \subsection{Data Collection --Maybe we should change the name???}
