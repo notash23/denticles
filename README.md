@@ -35,13 +35,13 @@ I changed the STL files. We expect a drag reduction of almost 25%...
 ## Gökçe Notes
 Well, I generally take notes but they are never organized...
 
-Turbulence properties 
-Parallel computing
-Simulation parameters
-
-- run only airfoil 
-- Look for github stuff
-
 **NEW**: I added possible shark designs folder 
 
---We need to use RANS because LES 
+- The first results here: 
+                        Drag force of airfoil w/ denticle = 0.000619378 N 
+                        Drag force of airfoil smooth = 0.00124926 N  **Well wait! I scaled down to mm maybe it effects the units here?
+
+                        Drag - airfoil w/denticle = 5e-4
+                        Drag - airfoil smooth = 1e-3 
+
+                        Drag reduction rate: 50%  *Too much!*
