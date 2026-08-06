@@ -191,7 +191,7 @@ castellatedMeshControls
         refinement1
         {
             mode inside;
-            levels ((1.0 3));
+            levels ((1.0 4));
         }
         //sphere.stl
         //{

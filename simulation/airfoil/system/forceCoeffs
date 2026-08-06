@@ -6,13 +6,11 @@
 |    \\/     M anipulation  |                                                 |
 \*---------------------------------------------------------------------------*/
 
-forceCoeffs1
+forceCoeffs
 {
     type            forceCoeffs;
     libs            ("libforces.so");
     patches         (airfoil);
-
-    writeFields     yes;
 
     p               p;
     U               U;
