@@ -10,6 +10,7 @@ wallShearStress
 {
     type            wallShearStress;
     libs            (fieldFunctionObjects);
+    patches         (airfoil);
 }
 
 

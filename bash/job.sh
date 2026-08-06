@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 #SBATCH --job-name=shark_denticles_%j
 #SBATCH --partition=short
-#SBATCH --time=02:00:00
+#SBATCH --time=04:00:00
 #SBATCH --ntasks=128
 #SBATCH --mem=0
 #SBATCH --error=denticles_%j.err.txt
@@ -15,8 +15,8 @@
 set -e
 
 # Move required files into Parallel Scratch Storage
-cp -r /scratch/adwarka-denticle/denticles/simulation/airfoil/ /scratch/adwarka-denticle/airfoil/
-cd /scratch/adwarka-denticle/airfoil/
+cp -r /scratch/adwarka-denticle/denticles/simulation/airfoil/ /scratch/adwarka-denticle/airfoil_denticles/
+cd /scratch/adwarka-denticle/airfoil_denticles/
 
 # Load software (if needed) using module load, e.g.
 module load spack
@@ -40,4 +40,4 @@ reconstructPar
 rm -r processor*
 touch foam.foam
 cd ..
-tar -czf airfoil.tar.gz airfoil/
+tar -czf airfoil_denticles.tar.gz airfoil_denticles/
