@@ -24,6 +24,7 @@ This repository aims at simulating the fluid flow on a NACA0012 airfoil that is 
 - **DONE**: Make bash script stop on error
 - Try Local Scratch Storage
 - Explain what our approach is in our intro (forget theory. Assume that shark perfected it and see what result it gives us)
+- How to add wallshearstress and other variables in simulations?
 
 ## Akash Notes
 I found a problem today. If the cpu cores are found in different nodes, it will not run the simulation. I need to read the documentations to fix. I could have been writing the paper right now... But I ran into this problem. Which is good because it means we can scale our simulation even more now.

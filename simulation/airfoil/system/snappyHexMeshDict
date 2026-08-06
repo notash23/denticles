@@ -22,7 +22,7 @@ FoamFile
 // Which of the steps to run
 castellatedMesh true;
 snap            true;
-addLayers       true;
+addLayers       false;
 
 
 // Optional: single region surfaces get patch names according to
@@ -51,6 +51,11 @@ geometry
     {
         type distributedTriSurfaceMesh;
         name airfoil;
+    }
+    refinement1 {
+        type searchableBox;
+        min ( -0.050 -0.250 -0.100);
+        max ( 0.250 0.250 0.100);
     }
 };
 
@@ -132,7 +137,7 @@ castellatedMeshControls
         airfoil
         {
             // Surface-wise min and max refinement level
-            level (3 8);
+            level (7 7);
             patchInfo { type wall; }
             //- Optional increment (on top of max level) in small gaps
             //gapLevelIncrement 2;
@@ -183,11 +188,11 @@ castellatedMeshControls
 
     refinementRegions
     {
-        // refinement1
-        // {
-        //     mode inside;
-        //     levels ((1.0 1));
-        // }
+        refinement1
+        {
+            mode inside;
+            levels ((1.0 3));
+        }
         //sphere.stl
         //{
         //    mode inside;
@@ -252,7 +257,7 @@ castellatedMeshControls
 
     // Ad 1. Specify a single location and how to treat faces inbetween
     //       cellZones
-    locationInMesh (-0.1 0 0);
+    locationInMesh (-0.5 0 0);
 
     // Whether any faceZones (as specified in the refinementSurfaces)
     // are only on the boundary of corresponding cellZones.
@@ -349,7 +354,7 @@ snapControls
 
     // Maximum number of snapping relaxation iterations. Should stop
     // before upon reaching a correct mesh.
-    nRelaxIter 20; // 20
+    nRelaxIter 5; // 20
 
     // (wip) disable snapping to opposite near surfaces (revert to 22x
     //  behaviour)
@@ -360,7 +365,7 @@ snapControls
 
     // Number of feature edge snapping iterations.
     // Leave out altogether to disable.
-    nFeatureSnapIter 100; // 100
+    nFeatureSnapIter 10; // 100
 
     // Detect (geometric only) features by sampling the surface
     // (default=false).
@@ -462,11 +467,11 @@ addLayersControls
     {
         "internalFace.*"
         {
-            nSurfaceLayers 20;
+            nSurfaceLayers 5;
         }
         airfoil
         {
-            nSurfaceLayers 20;
+            nSurfaceLayers 5;
         }
     }
 
@@ -490,7 +495,7 @@ addLayersControls
     //mergePatchFacesAngle 45;
 
     // Stop layer growth on highly warped cells
-    maxFaceThicknessRatio 1000;//0.5;
+    maxFaceThicknessRatio 0.5;
 
 
     // Patch displacement
