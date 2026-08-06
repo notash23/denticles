@@ -12,6 +12,8 @@ forceCoeffs1
     libs            ("libforces.so");
     patches         (airfoil);
 
+    writeFields     yes;
+
     p               p;
     U               U;
     rho             rhoInf;

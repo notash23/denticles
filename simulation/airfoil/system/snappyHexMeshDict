@@ -137,7 +137,7 @@ castellatedMeshControls
         airfoil
         {
             // Surface-wise min and max refinement level
-            level (7 7);
+            level (8 8);
             patchInfo { type wall; }
             //- Optional increment (on top of max level) in small gaps
             //gapLevelIncrement 2;

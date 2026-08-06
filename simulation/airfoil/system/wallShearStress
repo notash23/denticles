@@ -11,6 +11,9 @@ wallShearStress
     type            wallShearStress;
     libs            (fieldFunctionObjects);
     patches         (airfoil);
+
+    executeControl  timeStep;
+    executeInterval 50;
 }
 
 
