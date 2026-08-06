@@ -20,7 +20,7 @@ This repository aims at simulating the fluid flow on a NACA0012 airfoil that is 
 - **DONE**: How do we run multicore parallel simulation?
 - Find out if it would be feasible to run an FSI simulation
 - **GOT IT FROM NIK**: What template should we use for the paper?
-- **DECREASED SIZE BY 4**: Improve STL
+- **DECREASED SIZE BY 4**: Improve STL (obtained airfoil from https://www.bigfoil.com/D/ed677818-5a94-4df6-8006-2eebed47df40_infoDAT.php)
 - **DONE**: Make bash script stop on error
 - Try Local Scratch Storage
 - Explain what our approach is in our intro (forget theory. Assume that shark perfected it and see what result it gives us)
