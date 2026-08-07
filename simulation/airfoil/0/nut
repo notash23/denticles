@@ -34,13 +34,13 @@ boundaryField
 
     walls
     {
-        type            nutkWallFunction;
+        type            nutUSpaldingWallFunction;
         value           uniform 0;
     }
 
     airfoil
     {
-        type            nutkWallFunction;
+        type            nutUSpaldingWallFunction;
         value           uniform 0;
     }
 }

@@ -140,21 +140,29 @@ These results suggests that simulations tend to find lower drag reduction values
 
 Two papers \cite{ankhelyi_diversity_2018}\cite{motta_scale_2012} use micro-CT scanning and SEM data pulled from previous studies to obtain the relevant data in Table \ref{table:2}.
 
+As the paper \cite{motta_scale_2012} explained, the denticle morphology is split into three parts: the base, the neck, and the crown. 
+
 \begin{table}[h]
     \centering
-    \begin{tabular}{|c|c|c|c|c|} 
+    \begin{tabular}{|c|c|c|c|c|c|c|c|} 
         \hline
-        Species & Length ($\mu m$) & Width ($\mu m$) & Riblet Spacing ($\mu m$) & Riblet Height ($\mu m$) \\ 
+        Species & Riblets & Length ($\mu m$) & Width ($\mu m$) & Riblet Spacing ($\mu m$) & Riblet Height ($\mu m$) & Base Width ($\mu m$) & Base Length ($\mu m$) \\ 
         \hline
-        \textit{I. oxyrinchus} & 207.8 & 156.4 & 54.4 & 13.4 \\ 
-        \textit{M. canis} &  298.0 &  225.1 &   45.38 & 4.68 \\
-        \textit{C. limbatus} & 369 & 393 & 61 & 6 \\
-        \textit{C. carcharias} &  301.0 & 247 & 99.5 & 26.8 \\
+        \textit{I. oxyrinchus} & 3 & 207.8 & 156.4 & 54.4 & 13.4 & 152.5 & 76 \\ 
+        \textit{M. canis} & 1-3 & 298.0 &  225.1 &   45.38 & 4.68 & - & - \\
+        \textit{C. limbatus} & 5-7 & 369 & 393 & 61 & 6 & 445 & 243 \\
+        \textit{C. carcharias} & 3 &  301.0 & 247 & 99.5 & 26.8 & - & - \\
         \hline
     \end{tabular}
     \caption{Denticle Measurements}
     \label{table:2}
 \end{table}
+
+We chose 3 ridges for \textit{M. Canis} since we referred to the midbody region for all species. This is based on Figure 2 in paper \cite{ankhelyi_diversity_2018}. As for \textit{C. carcharias}, we used 3 based on the Figure 4 in \cite{ankhelyi_diversity_2018}. For \textit{C. limbatus}, we used 5 ridges based on Figure 6 \cite{motta_scale_2012}.
+
+We used B2 and B5 to find the base dimensions in Table 1 in \cite{motta_scale_2012} for \textit{I. oxyrinchus} and \textit{C. limbatus}.
+
+And I will do some magic to find the neck width and the denticle height.
 
 \section{Data and Methodology}
 \label{sec:3}

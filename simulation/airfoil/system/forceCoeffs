@@ -5,49 +5,36 @@
 |   \\  /    A nd           | Website:  www.openfoam.com                      |
 |    \\/     M anipulation  |                                                 |
 \*---------------------------------------------------------------------------*/
-FoamFile
+
+forceCoeffs
 {
-    version     2.0;
-    format      ascii;
-    class       dictionary;
-    object      controlDict;
+    type            forceCoeffs;
+    libs            ("libforces.so");
+    patches         (airfoil);
+
+    p               p;
+    U               U;
+    rho             rhoInf;
+
+    pRef            0;
+    rhoInf          1;
+    
+    liftDir         (0 1 0);
+    dragDir         (1 0 0);
+    CofR            (0.102 0 0);
+    pitchAxis       (0 0 1);
+    
+    magUInf         0.8;
+    lRef            0.204;
+    Aref            0.083232;
+    
+    binData
+    {
+        nBin        20;
+        direction   (1 0 0);
+        cumulative  yes;
+    }
 }
-// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
-application     simpleFoam;
-
-startFrom       startTime;
-
-startTime       0;
-
-stopAt          endTime;
-
-endTime         2000;
-
-deltaT          1;
-
-writeControl    timeStep;
-
-writeInterval   100;
-
-purgeWrite      0;
-
-writeFormat     ascii;
-
-writePrecision  6;
-
-writeCompression off;
-
-timeFormat      general;
-
-timePrecision   6;
-
-runTimeModifiable true;
-
-functions
-{
-    #include "wallShearStress"
-    #include "forceCoeffs"
-}
 
 // ************************************************************************* //
