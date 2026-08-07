@@ -18,14 +18,14 @@ convertToMeters 0.001;	//This gives you the scale: 0.001 would mean all units in
 
 vertices
 (
-    (-125  -300   0)     // Vertex 0 (Front-Left-Bottom)
-    ( 125  -300   0)     // Vertex 1 (Front-Right-Bottom)
-    ( 125   700   0)     // Vertex 2 (Back-Right-Bottom - extended to 10)
-    (-125   700   0)     // Vertex 3 (Back-Left-Bottom - extended to 10)
-    (-125  -300  300)     // Vertex 4 (Front-Left-Top)
-    ( 125  -300  300)     // Vertex 5 (Front-Right-Top)
-    ( 125   700  300)     // Vertex 6 (Back-Right-Top - extended to 10)
-    (-125   700  300)     // Vertex 7 (Back-Left-Top - extended to 10)
+    (-250  -100   0)     // Vertex 0 (Front-Left-Bottom)
+    ( 250  -100   0)     // Vertex 1 (Front-Right-Bottom)
+    ( 250   150   0)     // Vertex 2 (Back-Right-Bottom - extended to 10)
+    (-250   150   0)     // Vertex 3 (Back-Left-Bottom - extended to 10)
+    (-250  -100  300)     // Vertex 4 (Front-Left-Top)
+    ( 250  -100  300)     // Vertex 5 (Front-Right-Top)
+    ( 250   150  300)     // Vertex 6 (Back-Right-Top - extended to 10)
+    (-250   150  300)     // Vertex 7 (Back-Left-Top - extended to 10)
 );
 
 blocks			//defining the block which the geometry is made out of
