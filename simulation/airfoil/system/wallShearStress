@@ -12,8 +12,8 @@ wallShearStress
     libs            (fieldFunctionObjects);
     patches         (airfoil);
 
-    executeControl  endTime;
-    writeControl    endTime;
+    executeControl  onEnd;
+    writeControl    onEnd;
 }
 
 
