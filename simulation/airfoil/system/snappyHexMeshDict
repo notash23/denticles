@@ -57,7 +57,7 @@ castellatedMeshControls
     {
         airfoil
         {
-            level (8 8);
+            level (7 7);
             patchInfo { type wall; }
         }
     }
@@ -70,7 +70,7 @@ castellatedMeshControls
         refinement1
         {
             mode inside;
-            levels ((1.0 4));
+            levels ((1.0 3));
         }
     }
 
@@ -131,6 +131,7 @@ addLayersControls
     nLayerIter 50;
     nRelaxedIter 0;
 }
+
 
 meshQualityControls
 {

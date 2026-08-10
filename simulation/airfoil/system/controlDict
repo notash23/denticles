@@ -48,6 +48,7 @@ functions
 {
     #include "wallShearStress"
     #include "forceCoeffs"
+    #include "yPlus"
 }
 
 // ************************************************************************* //

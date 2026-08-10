@@ -7,18 +7,12 @@ app = adsk.core.Application.get()
 ui = app.userInterface
 
 
-# TODO *** Specify the command identity information. ***
 CMD_ID = f'{config.COMPANY_NAME}_{config.ADDIN_NAME}_cmdDialog'
 CMD_NAME = 'Riblet Generator'
 CMD_Description = 'A Fusion Add-in Command that generates sketches for riblets'
 
-# Specify that the command will be promoted to the panel.
 IS_PROMOTED = True
 
-# TODO *** Define the location where the command button will be created. ***
-# This is done by specifying the workspace, the tab, and the panel, and the 
-# command it will be inserted beside. Not providing the command to position it
-# will insert it at the end.
 WORKSPACE_ID = 'FusionSolidEnvironment'
 PANEL_ID = 'SurfaceCreatePanel'
 
@@ -74,9 +68,40 @@ def stop():
 def command_created(args: adsk.core.CommandCreatedEventArgs):
     # https://help.autodesk.com/view/fusion360/ENU/?contextId=CommandInputs
     inputs = args.command.commandInputs
+
+    initial_value_dist = adsk.core.ValueInput.createByString('0 mm')
+
+    distance_input = inputs.addValueInput('height', 'Height', 'mm', initial_value_dist)
+    distance_input.minimumValue = 0.0
+    distance_input.maximumValue = 100.0
+
+    distance_input = inputs.addValueInput('length', 'Crown Length', 'mm', initial_value_dist)
+    distance_input.minimumValue = 0.0
+    distance_input.maximumValue = 100.0
+
+    distance_input = inputs.addValueInput('width', 'Crown Width', 'mm', initial_value_dist)
+    distance_input.minimumValue = 0.0
+    distance_input.maximumValue = 100.0
+
+    distance_input = inputs.addValueInput('crown_height', 'Crown Height', 'mm', initial_value_dist)
+    distance_input.minimumValue = 0.0
+    distance_input.maximumValue = 100.0
+
+    distance_input = inputs.addValueInput('riblet_depth', 'Riblet Depth', 'mm', initial_value_dist)
+    distance_input.minimumValue = 0.0
+    distance_input.maximumValue = 100.0
+
+    distance_input = inputs.addValueInput('riblet_height', 'Riblet Height', 'mm', initial_value_dist)
+    distance_input.minimumValue = 0.0
+    distance_input.maximumValue = 100.0
+
+    distance_input = inputs.addValueInput('riblet_taper', 'Riblet Taper', 'mm', initial_value_dist)
+    distance_input.minimumValue = 0.0
+    distance_input.maximumValue = 100.0
+
     inputs.addIntegerSpinnerCommandInput('num_riblets', 'Number of Riblets', 1, 30, 1, 3)
 
-    # TODO Connect to the events that are needed by this command.
+
     futil.add_handler(args.command.execute, command_execute, local_handlers=local_handlers)
     futil.add_handler(args.command.destroy, command_destroy, local_handlers=local_handlers)
 
@@ -93,15 +118,31 @@ def command_execute(args: adsk.core.CommandEventArgs):
     inputs = args.command.commandInputs
     num_riblets_spinner: adsk.core.IntegerSpinnerCommandInput = inputs.itemById('num_riblets')
     num_riblets = num_riblets_spinner.value
-    length = userParams.itemByName('CW').value * 0.75
-    height = userParams.itemByName('Height').value
-    crown_height = userParams.itemByName('CH').value
-    depth = userParams.itemByName('CL').value
-    riblet_depth = userParams.itemByName('RD').value
+
+    height = inputs.itemById('height').value
+    length = inputs.itemById('length').value
+    width = inputs.itemById('width').value * 0.75 # Already wrote the code with 0.75 idc enough
+    
+    crown_height = inputs.itemById('crown_height').value
+    riblet_depth = inputs.itemById('riblet_depth').value
+    riblet_height = inputs.itemById('riblet_height').value
+    riblet_taper = inputs.itemById('riblet_taper').value
+
+    # ******************************** Plane Code ********************************
+    planes = rootComp.constructionPlanes
+    planeInput = planes.createInput()
+    
+    # Add construction plane by offset
+    offset_value = adsk.core.ValueInput.createByReal(-length/2)
+    planeInput.setByOffset(rootComp.xZConstructionPlane, offset_value)
+    profilePlane = planes.add(planeInput)
+
+    offset_value = adsk.core.ValueInput.createByReal(height)
+    planeInput.setByOffset(rootComp.xYConstructionPlane, offset_value)
+    cutoutPlane = planes.add(planeInput)
 
     # ******************************** Profile Code ********************************
-    planes = rootComp.constructionPlanes
-    profileSketch = sketches.add(planes.itemByName('ProfilePlane'))
+    profileSketch = sketches.add(profilePlane)
     splines = profileSketch.sketchCurves.sketchFittedSplines
     constraints = profileSketch.geometricConstraints
     sketchDimensions = profileSketch.sketchDimensions
@@ -113,8 +154,8 @@ def command_execute(args: adsk.core.CommandEventArgs):
 
         # Define the points the spline with fit through.
         points.add(adsk.core.Point3D.create(0, -height, 0))
-        points.add(adsk.core.Point3D.create(-length/(2*num_riblets), -height-0.1, 0))
-        points.add(adsk.core.Point3D.create(-length/num_riblets, -height-0.2, 0))
+        points.add(adsk.core.Point3D.create(-width/(2*num_riblets), -height-0.1, 0))
+        points.add(adsk.core.Point3D.create(-width/num_riblets, -height-0.2, 0))
         
         spline = splines.add(points)
         fitPoints = spline.fitPoints
@@ -139,10 +180,10 @@ def command_execute(args: adsk.core.CommandEventArgs):
         sketchDimension.parameter.expression = '1 mm'
 
         sketchDimension = sketchDimensions.addDistanceDimension(fitPoint0, fitPoint2, adsk.fusion.DimensionOrientations.HorizontalDimensionOrientation, fitPoint0.geometry)
-        sketchDimension.parameter.expression = f'CW*0.75/{num_riblets}'
+        sketchDimension.parameter.value = width/num_riblets
 
         sketchDimension = sketchDimensions.addDistanceDimension(fitPoint0, fitPoint1, adsk.fusion.DimensionOrientations.HorizontalDimensionOrientation, fitPoint1.geometry)
-        sketchDimension.parameter.expression = f'{(i+1)/(num_riblets+1)}*CW*0.75/{num_riblets}'
+        sketchDimension.parameter.value = (i+1)/(num_riblets+1) * width/num_riblets
         
         if i == 0:
             first_spline = spline
@@ -150,13 +191,13 @@ def command_execute(args: adsk.core.CommandEventArgs):
             constraints.addCoincident(spline.startSketchPoint, prev_spline.endSketchPoint)
         
         displacementFull = -crown_height*40*((i+1)/num_riblets)*((i+1)/num_riblets-1)
-        displacementHalf = -crown_height*40*((i+0.5)/num_riblets)*((i+0.5)/num_riblets-1)
+        displacementHalf = -crown_height*40*((i+0.5)/num_riblets)*((i+0.5)/num_riblets-1) - riblet_depth*10
 
         sketchDimension = sketchDimensions.addDistanceDimension(first_spline.fitPoints.item(0), fitPoint2, adsk.fusion.DimensionOrientations.VerticalDimensionOrientation, fitPoint2.geometry)
         sketchDimension.parameter.expression = f'{displacementFull} mm'
 
         sketchDimension = sketchDimensions.addDistanceDimension(first_spline.fitPoints.item(0), fitPoint1, adsk.fusion.DimensionOrientations.VerticalDimensionOrientation, fitPoint1.geometry)
-        sketchDimension.parameter.expression = f'{displacementHalf} mm - RD'
+        sketchDimension.parameter.expression = f'{displacementHalf} mm'
         prev_spline = spline
     
     horizontalConstructionLine = sketchLines.addByTwoPoints(adsk.core.Point3D.create(0, 0, 0), adsk.core.Point3D.create(0, 0, 0))
@@ -171,12 +212,11 @@ def command_execute(args: adsk.core.CommandEventArgs):
     verticalConstructionLine.isConstruction = True
 
     sketchDimension = sketchDimensions.addDistanceDimension(verticalConstructionLine.startSketchPoint, verticalConstructionLine.endSketchPoint, adsk.fusion.DimensionOrientations.VerticalDimensionOrientation, verticalConstructionLine.endSketchPoint.geometry)
-    sketchDimension.parameter.expression = 'Height'
+    sketchDimension.parameter.value = height
     profileSketch.isVisible = False
 
     # ******************************** Cutout Code ********************************
-    planes = rootComp.constructionPlanes
-    cutoutSketch = sketches.add(planes.itemByName('CrownPlane'))
+    cutoutSketch = sketches.add(cutoutPlane)
     sketchLines = cutoutSketch.sketchCurves.sketchLines
     conicCurves = cutoutSketch.sketchCurves.sketchConicCurves
     constraints = cutoutSketch.geometricConstraints
@@ -212,7 +252,7 @@ def command_execute(args: adsk.core.CommandEventArgs):
     constraints.addCoincident(topConstructionLine.endSketchPoint, fitPoint2)
     topConstructionLine.isConstruction = True
     sketchDimension = sketchDimensions.addDistanceDimension(topConstructionLine.startSketchPoint, topConstructionLine.endSketchPoint, adsk.fusion.DimensionOrientations.HorizontalDimensionOrientation, topConstructionLine.endSketchPoint.geometry)
-    sketchDimension.parameter.expression = 'CW * 0.75'
+    sketchDimension.parameter.value = width
 
     fitPoint1 = fitPoints1.item(1)
     line1 = spline1.activateTangentHandle(fitPoint1)
@@ -230,7 +270,7 @@ def command_execute(args: adsk.core.CommandEventArgs):
     constraints.addMidPoint(cutoutSketch.originPoint, constructionLine)
     constructionLine.isConstruction = True
     sketchDimension = sketchDimensions.addDistanceDimension(constructionLine.startSketchPoint, constructionLine.endSketchPoint, adsk.fusion.DimensionOrientations.HorizontalDimensionOrientation, constructionLine.endSketchPoint.geometry)
-    sketchDimension.parameter.expression = 'CW'
+    sketchDimension.parameter.value = width * 4/3
     
     fitPoint = fitPoints1.item(2)
     line = spline1.activateTangentHandle(fitPoint)
@@ -244,12 +284,12 @@ def command_execute(args: adsk.core.CommandEventArgs):
     constraints.addCoincident(verticalConstructionLine.endSketchPoint, fitPoint)
     verticalConstructionLine.isConstruction = True
     sketchDimension = sketchDimensions.addDistanceDimension(verticalConstructionLine.startSketchPoint, verticalConstructionLine.endSketchPoint, adsk.fusion.DimensionOrientations.VerticalDimensionOrientation, verticalConstructionLine.endSketchPoint.geometry)
-    sketchDimension.parameter.expression = 'CL/2'
+    sketchDimension.parameter.value = length/2
     constraints.addSymmetry(fitPoints1.item(0), fitPoints1.item(4), verticalConstructionLine)
     constraints.addSymmetry(fitPoints1.item(1), fitPoints1.item(3), verticalConstructionLine)
 
     sketchDimension = sketchDimensions.addOffsetDimension(constructionLine, topConstructionLine, constructionLine.startSketchPoint.geometry)
-    sketchDimension.parameter.expression = 'CL/2'
+    sketchDimension.parameter.value = length/2
 
     points = adsk.core.ObjectCollection.create()
 
@@ -286,37 +326,36 @@ def command_execute(args: adsk.core.CommandEventArgs):
     constraints.addMidPoint(verticalConstructionLine.endSketchPoint, topConstructionLine)
     verticalConstructionLine.isConstruction = True
     sketchDimension = sketchDimensions.addDistanceDimension(verticalConstructionLine.startSketchPoint, verticalConstructionLine.endSketchPoint, adsk.fusion.DimensionOrientations.VerticalDimensionOrientation, verticalConstructionLine.endSketchPoint.geometry)
-    sketchDimension.parameter.expression = 'CT'
-    
+    sketchDimension.parameter.value = riblet_height
+
     riblet_peaks = [0]
     for i in range(num_riblets):
         conicCurve = conicCurves.add(
-            adsk.core.Point3D.create(0, 6.7, 0),
-            adsk.core.Point3D.create(length, 6.7, 0), 
+            adsk.core.Point3D.create(-width, length + crown_height, 0),
+            adsk.core.Point3D.create(width, length + crown_height, 0), 
             adsk.core.Point3D.create(0, 0, 0),
             0.75
         )
+        constraints.addCoincident(conicCurve.endSketchPoint, spline2)
 
         if i == 0:
             constraints.addCoincident(conicCurve.startSketchPoint, spline2.startSketchPoint)
         else:
-            pass
             constraints.addCoincident(conicCurve.startSketchPoint, prev_conicCurve.endSketchPoint)
-
-        constraints.addCoincident(conicCurve.endSketchPoint, spline2)
+        
         pointLine = sketchLines.addByTwoPoints(conicCurve.startSketchPoint, conicCurve.endSketchPoint)
         pointLine.isConstruction = True
+        sketchDimension = sketchDimensions.addDistanceDimension(pointLine.startSketchPoint, pointLine.endSketchPoint, adsk.fusion.DimensionOrientations.HorizontalDimensionOrientation, pointLine.startSketchPoint.geometry)
+        sketchDimension.parameter.value = width/num_riblets
 
         verticalLine = sketchLines.addByTwoPoints(adsk.core.Point3D.create(0, 0, 0), adsk.core.Point3D.create(0, 0, 0))
+        verticalLine.isConstruction = True
         constraints.addMidPoint(verticalLine.startSketchPoint, pointLine)
         constraints.addVertical(verticalLine)
         constraints.addCoincident(verticalLine.endSketchPoint, conicCurve.apexSketchPoint)
-        verticalLine.isConstruction = True
-
+        
         sketchDimension = sketchDimensions.addDistanceDimension(verticalLine.startSketchPoint, verticalLine.endSketchPoint, adsk.fusion.DimensionOrientations.VerticalDimensionOrientation, verticalLine.endSketchPoint.geometry)
-        sketchDimension.parameter.expression = 'RT'
-        sketchDimension = sketchDimensions.addDistanceDimension(pointLine.startSketchPoint, pointLine.endSketchPoint, adsk.fusion.DimensionOrientations.HorizontalDimensionOrientation, pointLine.startSketchPoint.geometry)
-        sketchDimension.parameter.expression = f'CW*0.75/{num_riblets}'
+        sketchDimension.parameter.value = riblet_taper
 
         sketchDimension = sketchDimensions.addDistanceDimension(pointLine.startSketchPoint, pointLine.endSketchPoint, adsk.fusion.DimensionOrientations.VerticalDimensionOrientation, pointLine.startSketchPoint.geometry, False)
         riblet_peaks.append(sketchDimension.parameter.value)
@@ -343,21 +382,21 @@ def command_execute(args: adsk.core.CommandEventArgs):
         k = num_riblets/2 - i
 
         # Define the points the spline with fit through.
-        points.add(adsk.core.Point3D.create(-height-displacement, - depth/2, -length*i/num_riblets + length/2))
-        points.add(adsk.core.Point3D.create(-height-riblet_depth/2-displacement, depth/10 - depth/2, -length*i/num_riblets + length/2)) # + length*k/25))
-        points.add(adsk.core.Point3D.create(-height-riblet_depth-displacement, riblet_peaks[i] + depth/2, -length*i/num_riblets + length/2))
+        points.add(adsk.core.Point3D.create(-height-displacement, - length/2, -width*i/num_riblets + width/2))
+        points.add(adsk.core.Point3D.create(-height-riblet_depth/2-displacement, length/10 - length/2, -width*i/num_riblets + width/2)) # + width*k/25))
+        points.add(adsk.core.Point3D.create(-height-riblet_depth-displacement, riblet_peaks[i] + length/2, -width*i/num_riblets + width/2))
 
         spline = splines.add(points)
     
+    wingLine1 = sketchLines.addByTwoPoints(adsk.core.Point3D.create(-height, length/2, -width/1.5), adsk.core.Point3D.create(-height, - length/2, -width/1.5))
+    wing1 = sketchLines.addByTwoPoints(adsk.core.Point3D.create(-height, length/2, -width/1.5), adsk.core.Point3D.create(-height-riblet_depth, length/2, -width/2))
+
+    wingLine2 = sketchLines.addByTwoPoints(adsk.core.Point3D.create(-height, length/2, width/1.5), adsk.core.Point3D.create(-height, - length/2, width/1.5))
+    wing2 = sketchLines.addByTwoPoints(adsk.core.Point3D.create(-height, length/2, width/1.5), adsk.core.Point3D.create(-height-riblet_depth, length/2, width/2))
+
     pathSketch.isVisible = False
-    
+
     # ******************************** Surface Code ********************************
-    wingLine1 = sketchLines.addByTwoPoints(adsk.core.Point3D.create(-height, depth/2, -length/1.5), adsk.core.Point3D.create(-height, - depth/2, -length/1.5))
-    wing1 = sketchLines.addByTwoPoints(adsk.core.Point3D.create(-height, depth/2, -length/1.5), adsk.core.Point3D.create(-height-riblet_depth, depth/2, -length/2))
-
-    wingLine2 = sketchLines.addByTwoPoints(adsk.core.Point3D.create(-height, depth/2, length/1.5), adsk.core.Point3D.create(-height, - depth/2, length/1.5))
-    wing2 = sketchLines.addByTwoPoints(adsk.core.Point3D.create(-height, depth/2, length/1.5), adsk.core.Point3D.create(-height-riblet_depth, depth/2, length/2))
-
     surfaces = adsk.core.ObjectCollection.create()
     splines = profileSketch.sketchCurves.sketchFittedSplines
     for i in range(num_riblets):
