@@ -36,25 +36,8 @@ geometry
         scale   0.001;
     }
 
-    denticles.stl
-    {
-        type triSurfaceMesh;
-        name denticles;
-        scale   0.001;
-        insidePoint (-0.5 0.5 0.05);
-    }
-
-// --- Rectangular Prism Refinement Region ---
-    denticleRegion
-    {
-        type searchableBox;  //If denticles sit on a curved or tilted surface on the airfoil, use searchableRotatedBox
-        min (0.072 -0.2 0.0065);  // Bottom-left-back corner coordinates
-        max (0.083 0.2 0.015);  // Top-right-front corner coordinates
-    }
 
 }
-
-
 
 // Settings for the castellatedMesh generation.
 castellatedMeshControls
@@ -100,10 +83,6 @@ castellatedMeshControls
             level 4;
         }
     
-        {
-            file "denticles.eMesh";
-            level 6;
-        }
     );
 
 
@@ -126,12 +105,6 @@ castellatedMeshControls
             patchInfo { type wall; }
         }
 
-        denticles
-        {
-            // High surface refinement level to resolve micro-geometry features
-            level (5 6);
-            patchInfo { type wall; }
-        }
     }
 
     resolveFeatureAngle 20;
@@ -233,10 +206,6 @@ addLayersControls
             nSurfaceLayers 3;
         }
 
-        "denticles"
-        {
-            nSurfaceLayers 0;
-        }
     }
 
     // Expansion factor for layer mesh
@@ -381,6 +350,7 @@ meshQualityControls
         //- Maximum non-orthogonality allowed. Set to 180 to disable.
         maxNonOrtho 75;
     }
+
 }
 
 
