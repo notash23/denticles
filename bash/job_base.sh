@@ -24,7 +24,7 @@ spack env activate foam_env
 
 # Using base STL
 rm constant/triSurface/airfoil.stl
-mv constant/triSurface/_airfoil.stl constant/triSurface/airfoil.stl
+mv constant/triSurface/airfoil_base.stl constant/triSurface/airfoil.stl
 
 # Meshing
 blockMesh
@@ -43,5 +43,5 @@ mpirun simpleFoam -parallel
 reconstructPar
 rm -r processor*
 touch foam.foam
-cd ..
-tar -czf airfoil_base.tar.gz airfoil_base/
+# cd ..
+# tar -czf airfoil_base.tar.gz airfoil_base/

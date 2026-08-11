@@ -39,5 +39,5 @@ mpirun simpleFoam -parallel
 reconstructPar
 rm -r processor*
 touch foam.foam
-cd ..
-tar -czf airfoil_denticles.tar.gz airfoil_denticles/
+# cd ..
+# tar -czf airfoil_denticles.tar.gz airfoil_denticles/
