@@ -19,7 +19,7 @@ snap            true;
 addLayers       true;
 
 
-geometry
+geometry 
 {
     airfoil.stl
     {
@@ -27,10 +27,22 @@ geometry
         name airfoil;
     }
 
+    denticles.stl
+    {
+        type distributedTriSurfaceMesh;
+        name denticles;
+    }
+
     refinement1 {
         type searchableBox;
-        min ( -0.200 -0.250 -0.200);
-        max ( 0.400 0.250 0.200);
+        min ( -0.200 -0.025 -0.200);
+        max ( 0.400 0.025 0.200);
+    }
+    
+    refinement.stl
+    {
+        type triSurfaceMesh;
+        name refinement2;
     }
 };
 
@@ -51,6 +63,11 @@ castellatedMeshControls
             file "airfoil.eMesh";
             level 0;
         }
+
+        {
+            file "denticles.eMesh";
+            level 0;
+        }
     );
 
     refinementSurfaces
@@ -58,6 +75,12 @@ castellatedMeshControls
         airfoil
         {
             level (7 7);
+            patchInfo { type wall; }
+        }
+
+        denticles
+        {
+            level (10 10);
             patchInfo { type wall; }
         }
     }
@@ -70,7 +93,13 @@ castellatedMeshControls
         refinement1
         {
             mode inside;
-            levels ((1.0 3));
+            levels ((1.0 4));
+        }
+
+        refinement2
+        {
+            mode inside;
+            levels ((1.0 7));
         }
     }
 
@@ -104,15 +133,20 @@ addLayersControls
 {
     relativeSizes true;
 
-    expansionRatio 1.2;
-    finalLayerThickness 0.5;
-    minThickness 0.000001;
+    expansionRatio 1.07;
+    finalLayerThickness 0.8;
+    minThickness 0.001;
 
     layers
     {
         airfoil
         {
-            nSurfaceLayers 5;
+            nSurfaceLayers 25;
+        }
+
+        denticles
+        {
+            nSurfaceLayers 20;
         }
     }
     nGrow -1;

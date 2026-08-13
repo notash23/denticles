@@ -34,13 +34,19 @@ boundaryField
 
     walls
     {
-        type            nutUSpaldingWallFunction;
+        type            nutLowReWallFunction;
         value           uniform 0;
     }
 
     airfoil
     {
-        type            nutUSpaldingWallFunction;
+        type            nutLowReWallFunction;
+        value           uniform 0;
+    }
+
+    denticles
+    {
+        type            nutLowReWallFunction;
         value           uniform 0;
     }
 }

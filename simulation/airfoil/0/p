@@ -40,6 +40,11 @@ boundaryField
     {
         type            zeroGradient;
     }
+    
+    denticles
+    {
+        type            zeroGradient;
+    }
 }
 
 

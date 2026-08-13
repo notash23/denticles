@@ -76,11 +76,11 @@ def command_created(args: adsk.core.CommandCreatedEventArgs):
     distance_input.maximumValue = 100.0
 
     distance_input = inputs.addValueInput('length', 'Crown Length', 'mm', initial_value_dist)
-    distance_input.minimumValue = 0.0
+    distance_input.minimumValue = 10.0
     distance_input.maximumValue = 100.0
 
     distance_input = inputs.addValueInput('width', 'Crown Width', 'mm', initial_value_dist)
-    distance_input.minimumValue = 0.0
+    distance_input.minimumValue = 10.0
     distance_input.maximumValue = 100.0
 
     distance_input = inputs.addValueInput('crown_height', 'Crown Height', 'mm', initial_value_dist)

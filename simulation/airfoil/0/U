@@ -42,6 +42,11 @@ boundaryField
     {
         type            noSlip;
     }
+
+    denticles
+    {
+        type            noSlip;
+    }
 }
 
 

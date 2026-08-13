@@ -25,7 +25,6 @@ airfoil.stl
     // - 180: selects all edges
     includedAngle       150;
 
-    curvature true;
     // Do not mark region edges
     geometricTestOnly   yes;
 
@@ -38,6 +37,20 @@ airfoil.stl
     // Output options:
 
     // Write features to obj format for postprocessing
+    writeObj            no;
+}
+
+denticles.stl
+{
+    extractionMethod    extractFromSurface;
+    includedAngle       150;
+    
+    geometricTestOnly   yes;
+
+    intersectionMethod  none;
+
+    tolerance           1e-3;
+    
     writeObj            no;
 }
 

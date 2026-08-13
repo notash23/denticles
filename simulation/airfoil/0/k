@@ -33,13 +33,19 @@ boundaryField
 
     walls
     {
-        type            kqRWallFunction;
+        type            kLowReWallFunction;
         value           $internalField;
     }
 
     airfoil
     {
-        type            kqRWallFunction;
+        type            kLowReWallFunction;
+        value           $internalField;
+    }
+
+    denticles
+    {
+        type            kLowReWallFunction;
         value           $internalField;
     }
 }

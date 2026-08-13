@@ -42,6 +42,12 @@ boundaryField
         type            omegaWallFunction;
         value           $internalField;
     }
+
+    denticles
+    {
+        type            omegaWallFunction;
+        value           $internalField;
+    }
 }
 
 
