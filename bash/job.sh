@@ -4,8 +4,8 @@
 #SBATCH --time=12:00:00
 #SBATCH --ntasks=128
 #SBATCH --mem=0
-#SBATCH --error=job%j.err.txt
-#SBATCH --output=job%j.out.txt
+#SBATCH --error=denticle_%j.err.txt
+#SBATCH --output=denticle_%j.out.txt
 #SBATCH --chdir=/scratch/adwarka-denticle/output/
 
 #######################
@@ -14,7 +14,7 @@
 
 set -e
 
-SPECIES=('airfoil' 'oxyrinchus' 'canis' 'carcharias' 'limbatus')
+SPECIES=('oxyrinchus' 'canis' 'carcharias' 'limbatus')
 ANGLE=0
 
 # Load software (if needed) using module load, e.g.
@@ -23,9 +23,9 @@ spack env activate foam_env
 
 run_simulation () {
   # Move required files into Parallel Scratch Storage
-  mkdir -p "/scratch/adwarka-denticle/simulations/final/${ANGLE}/${1}/"
-  cp -r "/scratch/adwarka-denticle/denticles/simulation/airfoil/" "/scratch/adwarka-denticle/simulations/final/${ANGLE}/${1}/"
-  cd "/scratch/adwarka-denticle/simulations/final/${ANGLE}/${1}/"
+  mkdir -p "/scratch/adwarka-denticle/simulations/final/angle${ANGLE}/${1}/"
+  cp -r "/scratch/adwarka-denticle/denticles/simulation/airfoil/" "/scratch/adwarka-denticle/simulations/final/angle${ANGLE}/${1}/"
+  cd "/scratch/adwarka-denticle/simulations/final/angle${ANGLE}/${1}/"
   
   # Load STL
   surfaceTransformPoints -rotate-y "$ANGLE" /scratch/adwarka-denticle/models/airfoil.stl constant/triSurface/airfoil.stl
