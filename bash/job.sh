@@ -24,7 +24,7 @@ spack env activate foam_env
 run_simulation () {
   # Move required files into Parallel Scratch Storage
   mkdir -p "/scratch/adwarka-denticle/simulations/final/angle${ANGLE}/${1}/"
-  cp -r "/scratch/adwarka-denticle/denticles/simulation/airfoil/" "/scratch/adwarka-denticle/simulations/final/angle${ANGLE}/${1}/"
+  cp -r "/scratch/adwarka-denticle/denticles/simulation/airfoil/*" "/scratch/adwarka-denticle/simulations/final/angle${ANGLE}/${1}/"
   cd "/scratch/adwarka-denticle/simulations/final/angle${ANGLE}/${1}/"
   
   # Load STL
