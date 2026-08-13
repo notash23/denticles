@@ -9,54 +9,31 @@ FoamFile
 {
     version     2.0;
     format      ascii;
-    class       volVectorField;
-    object      U;
+    class       dictionary;
+    object      surfaceFeatureExtractDict;
 }
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
-dimensions      [0 1 -1 0 0 0 0];
-
-internalField   uniform (1 0 0);
-
-boundaryField
+airfoil.stl
 {
-    walls
+    // How to obtain raw features (extractFromFile || extractFromSurface)
+    extractionMethod    extractFromSurface;
+
+    extractFromSurfaceCoeffs
     {
-        type            fixedValue;
-        value           uniform (0 0 0);
+        // Mark edges whose adjacent surface normals are at an angle less
+        // than includedAngle as features
+        // - 0  : selects no edges
+        // - 180: selects all edges
+        includedAngle   150;
     }
 
-    inlet
-    {
-        type            fixedValue;
-        value           uniform (0.8 0 0);
-    }
+    // Write options
 
-    outlet
-    {
-        type            inletOutlet;
-	    inletValue	    uniform (0 0 0);
-	    value 		    $internalField;
-    }
-
-    frontAndBack
-    {
-        type            fixedValue;
-        value           uniform (0 0 0);
-    }
-
-    airfoil
-    {
-        type            fixedValue;
-	    value 		    uniform (0 0 0);
-    }
-
-    denticles
-    {
-        type            fixedValue;
-	    value 		    uniform (0 0 0);
-    }
-
+        // Write features to obj format for postprocessing
+        writeObj                yes;
 }
+
+
 
 // ************************************************************************* //
