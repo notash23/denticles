@@ -19,7 +19,7 @@ ANGLE=0
 
 # Load software (if needed) using module load, e.g.
 module load spack
-spack env activate foam_env
+spack env activate foam
 
 run_simulation () {
   # Move required files into Parallel Scratch Storage

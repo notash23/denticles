@@ -10,7 +10,7 @@ This repository aims at simulating the fluid flow on a NACA0012 airfoil that is 
     $$k = 1.5(UI)^2$$
     $$\epsilon = (C_{\mu})^{3/4}\frac{k^{3/2}}{L}$$
     $$\omega = \frac{\sqrt{k}}{\sqrt[4]{C_{\mu}}L}$$
-- **DONE (JUST IN CASE I WILL CHECK OUT A TUTORIAL FOR AIRFOIL TO MAKE SURE IT LOOKS RIGHT)**: Understand how SnappyHexMesh works
+- **DONE**: Understand how SnappyHexMesh works
 - Figure out if we can use adaptive mesh refinement
 - How do we use adaptive time step? (Useful for our turbulent flow)
 - Learn more about aerodynamics theory
@@ -25,6 +25,8 @@ This repository aims at simulating the fluid flow on a NACA0012 airfoil that is 
 - Try Local Scratch Storage
 - Explain what our approach is in our intro (forget theory. Assume that shark perfected it and see what result it gives us)
 - **DONE**: How to add wallshearstress and other variables in simulations?
+- Mesh refinement study
+- Why is angle 8 and 16 not working??
 
 ## Akash Notes
 I found a problem today. If the cpu cores are found in different nodes, it will not run the simulation. I need to read the documentations to fix. I could have been writing the paper right now... But I ran into this problem. Which is good because it means we can scale our simulation even more now.
