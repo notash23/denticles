@@ -6,7 +6,9 @@
 #SBATCH --mem=0
 
 # Run on local computer
-# ssh -fN -L 11111:orcaga01:11111 adwarka@login.orca.pdx.edu
+# ssh -fN -L 11111:orcaga[number]:11111 [username]@login.orca.pdx.edu
+
+set -e
 
 module load spack
 spack env activate paraview

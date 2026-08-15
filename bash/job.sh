@@ -8,10 +8,6 @@
 #SBATCH --output=denticle_%j.out.txt
 #SBATCH --chdir=/scratch/adwarka-denticle/output/
 
-#######################
-# Run 'sbatch job.sh' #
-#######################
-
 set -e
 
 SPECIES=('oxyrinchus' 'canis' 'carcharias' 'limbatus')

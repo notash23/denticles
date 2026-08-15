@@ -93,7 +93,7 @@ castellatedMeshControls
         refinement1
         {
             mode inside;
-            levels ((1.0 4));
+            levels ((1.0 3));
         }
 
         refinement2

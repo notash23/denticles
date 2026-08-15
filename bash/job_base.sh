@@ -8,10 +8,6 @@
 #SBATCH --output=base_%j.out.txt
 #SBATCH --chdir=/scratch/adwarka-denticle/output/
 
-#######################
-# Run 'sbatch job_base.sh' #
-#######################
-
 set -e
 
 ANGLES=(0 8 16)
