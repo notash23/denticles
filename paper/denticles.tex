@@ -26,6 +26,7 @@
 \usepackage{newtxtext}       % 
 \usepackage{newtxmath}       % selects Times Roman as basic font
 \usepackage[justification=centering]{caption}
+\usepackage{subcaption}
 
 \graphicspath{ {./img/} }
 
@@ -253,46 +254,77 @@ where $C_{D_s}$ is the drag coefficient of smooth airfoil while $C_{D_m}$ is the
     \caption{Coefficients Results}
     \label{table:3}
 \end{table}
-
-We will add later
-
-Provide a description of main findings in chronological order of the data represented in the methods section. Include a summary of research findings. Repeat questions to help readers understand results. Additionally, include a report about information collection, participants, and recruitment.
-
-Show data presented in tables, charts, graphs, and other figures.
-
-Put graphs or picture from the replicated scenario of the reference paper. 
-Put numbers of results
-Put numbers of comparison 
-Compare and make comments 
-
-
  
+
+
+
 \subsection{Validation of simulation}
 
 
-Here will be comparison of the replicated simulation and the reference paper. 
+\begin{figure}[htbp]
+  \centering
+  \begin{subfigure}[b]{0.48\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{smooth.png}
+    \caption{Smooth airfoil}
+    \label{fig:first}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}[b]{0.48\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{with denticle.png}
+    \caption{Airfoil with denticles}
+    \label{fig:second}
+  \end{subfigure}
+  \caption{Velocity field cross sectional areas comparison of smooth airfoil and airfoil with denticle}
+  \label{fig:two_images}
+\end{figure}
 
 \subsection{Comparison of across denticles}
 
-Here will be comparison of different denticle models.
+The simulation results suggest that while I. oxyrinchus (shortfin mako) and C. limbatus (blacktip shark) denticles performs higher drag reduction percentage than C. carchariac (white shark) and M. canis (smooth dogfish). 
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.8\linewidth]{drag reduction vs species.png} 
+    \centering
+    \caption{Drag reduction percentages across different shark species denticle geometries.}
+\end{figure}
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.8\linewidth]{drag reduction vs num riblets.png} 
+    \centering
+    \caption{Drag reduction percentages for varying numbers of riblets per denticle.}
+\end{figure}
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.8\linewidth]{drag reduction vs rib depth.png} 
+    \centering
+    \caption{Drag reduction percentages for varying riblet depths per denticle.}
+\end{figure}
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.8\linewidth]{drag reduction vs surface area.png} 
+    \centering
+    \caption{Drag reduction percentages for varying denticle surface areas.}
+\end{figure}
 
 \section{Conclusion}
 \label{sec:5}
-% Always give a unique label
-% and use \ref{<label>} for cross-references
-% and \cite{<label>} for bibliographic references
-% use \sectionmark{}
-% to alter or adjust the section heading in the running head
-Conclusion will be added later. 
+We found out that even though blacktip Shark denticles are much bigger (give exact scale number here) than shortfin mako shark denticles, blacks tip shark denticles reduce drag better than shortfin mako shark denticles.
 
 \subsection{Applications}
-Application fields will be added later.
+Because Blacktip shark denticles are ???? times larger than those of the Shortfin Mako while providing superior drag reduction, they present a distinct manufacturing advantage. The larger geometric scale simplifies fabrication and potentially lowers production costs, depending on the manufacturing technique used. By easing current fabrication constraints, denticle-inspired designs become far more viable for industrial adoption. Consequently, integrating these structures into aerodynamic and hydrodynamic vehicles can lower drag, improve energy efficiency, and ultimately reduce operational fuel costs.
 
 \subsection{Concerns and Future Work}
-Concerns and future work will be added later.
 
-MAYBE shark get deeper riblets by swimming faster the riblets become deeper from the fast moving fluids.
+We used RANS model which works well with steady state cases meaning that we do not experince the time evolution of eddies (fluid curves ????) 
 
+Also, we didnt look for other configuration of denticles. We have only one row but with that one row, we do not see what would happen if there is another row of denticles. and this extra row would effect the fluid flow.
+\vspace{\baselineskip}
 \textbf{Code and Data Availability} The code for the simulation and the add-in can be found on this Github page: https://github.com/notash23/denticles
 
 \begin{acknowledgement}
