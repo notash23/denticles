@@ -14,7 +14,6 @@ module load spack
 spack env activate paraview
 srun pvserver
 
-////
-sbatch paraview.sh
- then ssh command line on my computer
- open paraview and add server and connect to server
+# sbatch paraview.sh
+# then ssh command line on my computer
+# open paraview and add server and connect to server

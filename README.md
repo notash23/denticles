@@ -25,8 +25,31 @@ This repository aims at simulating the fluid flow on a NACA0012 airfoil that is 
 - Try Local Scratch Storage
 - Explain what our approach is in our intro (forget theory. Assume that shark perfected it and see what result it gives us)
 - **DONE**: How to add wallshearstress and other variables in simulations?
-- Mesh refinement study
-- Why is angle 8 and 16 not working??
+
+## Final countdown
+- Dont forget to reference the first paper for $SST-k\omega$ and $LES$ from Smagorinsky
+- Mesh refinement study: Do 3 cases of the base case at different angles
+- orthogonal vs smoothing layer in snappy
+- Why is angle 8 and 16 not working?? Try to use better boundary conditions
+- Check $y^+$
+- we should use EPS format
+- From Rishi
+    - Sequential numbering: Your in-text citations are currently alphabetical (your first citation in the text is [6]). Please reorder them sequentially ([1], [2], etc.) based on exactly where they first appear in the text.
+
+    - Reference list: Update all entries in your bibliography to the standard IEEE format (e.g., [1] F. Lastname, "Title," Journal, Year.).
+
+    - Incomplete Sections/Placeholders: Your draft contains numerous "[will be added later]" placeholders throughout the Abstract, Section 3.1, Section 4 (Results), and Section 5 (Conclusion). Please finalize all of these sections and remove the template instructions.
+
+    - Editor Comments: Please ensure you address the four margin comments Kartik left on your draft document regarding:
+        - Explaining the simulation vs. experiment discrepancy in Table 1.
+        - Explaining the translation of Table 2 micro-measurements to CAD.
+        - Adding a grid convergence/mesh independence statement for your CFD methodology.
+        - Specifying the units for the NACA 0012 airfoil dimensions.
+- For LES
+    - set up the simulation according the the TKE from RANS
+    - Implement adaptive mesh and timestep
+    - Calculate $k_{res}$ using `UPrime2MeanXX` and $k_{sgs}$ which is given by `k`
+    - Calculate ratio of $k$ and make sure that they are always more than $80\%$
 
 ## Akash Notes
 I found a problem today. If the cpu cores are found in different nodes, it will not run the simulation. I need to read the documentations to fix. I could have been writing the paper right now... But I ran into this problem. Which is good because it means we can scale our simulation even more now.

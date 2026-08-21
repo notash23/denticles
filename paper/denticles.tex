@@ -89,13 +89,13 @@ We studied the fluid flow around the airfoil design developed by the National Ad
 \section{Related Work and Background}
 \label{sec:2}
 
-The main motivation behind moving in this direction comes from the review paper from Graybill's review which remarked that most studies involved only shortfin mako's denticles.
+The main motivation behind this study comes from the review paper from Graybill's review which remarked that most studies involved only shortfin mako's denticles.
 
 \begin{quotation}
     One promising area of interest is to explore different variations of shark denticles, taking inspiration from diverse model shark species and denticle morphologies on different locations of the body \cite{graybill_experimental_2024}.
 \end{quotation}
 
-Evidently, both experiments and simulations either observe shortfin mako shark's denticles.
+Evidently, both experiments and simulations either observe mostly shortfin mako shark's denticles.
 
 \textbf{Theory} A suggested explanation for why denticles helps with reducing drag is by mitigating fluid flowing perpendicular to the mean velocity which is described as turbulent crossflow by Berchert \cite{bechert_experiments_1997}. However, this does not describe the full picture. Another concept that might contribute to this effect is the riblets lifting streamwise vortices \cite{graybill_experimental_2024}.
 
@@ -173,7 +173,7 @@ We used B2 and B5 to find the base dimensions in Table 1 in \cite{motta_scale_20
 % use \sectionmark{}
 % to alter or adjust the section heading in the running head
 
-In this study, we investigated the drag coefficient of shark denticles using a computational fluid dynamics (CFD) simulation in OpenFOAM \cite{openfoam}. The denticle geometry was modeled based on micro-Computed Tomography (CT) scans to ensure realistic representation in the domain. First, we validated the simulation workflow by comparing lift and drag values and drag rates by replicating case (a) of the paper from Guo et. al. \cite{guo_experimental_2023}. We created the mesh of the geometry in OpenFOAM using the \textit{snappyHexMesh} \cite{snappyHexMesh} (might be Issa's work, and Spalding \& Pantakar) utility targeting a near-wall $y^+\approx 1 $ to catch boundary layer behavior and used \textit{simpleFoam} as a solver \cite{simpleFoam} (TODO: We might need rephrase this and next sentence). We modeled the flow as steady-state and incompressible flow with the SST $k-\omega$ turbulence model. One of the main objectives of this study is to create a simulation that is as close to reality as possible. For this reason, water was used for the fluid with density, $\rho = 1000 \text{kg}/\text{m}^3$, and kinematic viscosity, $\mu = 1\times 10^{-6} \text{m}^2/\text{s}$ at $20 ^\circ C$. Because the simulation ran in steady state, we utilized simpleFoam as a solver. Then, post-processing of the result was executed in ParaView to obtain the lift and drag forces. 
+In this study, we investigated the drag coefficient of shark denticles using a computational fluid dynamics (CFD) simulation in OpenFOAM \cite{openfoam}. The denticle geometry was modeled based on micro-Computed Tomography (CT) scans to ensure realistic representation in the domain. First, we validated the simulation workflow by comparing lift and drag values and drag rates by replicating case (a) of the paper from Guo et. al. \cite{guo_experimental_2023}. We created the mesh of the geometry in OpenFOAM using the \textit{snappyHexMesh} \cite{snappyHexMesh} (might be Issa's work, and Spalding \& Pantakar) utility targeting a near-wall $y^+\approx 1 $ to resolve boundary layer behavior and used \textit{simpleFoam} as a solver \cite{simpleFoam} (TODO: We might need rephrase this and next sentence). We modeled the flow as steady-state and incompressible flow with the SST $k-\omega$ turbulence model. One of the main objectives of this study is to create a simulation that is as close to reality as possible. For this reason, water was used for the fluid with density, $\rho = 1000 \text{kg}/\text{m}^3$, and kinematic viscosity, $\nu = 1\times 10^{-6} \text{m}^2/\text{s}$ at $20 ^\circ C$. Because the simulation ran in steady state, we utilized simpleFoam as a solver. Then, post-processing of the result was executed in ParaView to obtain the lift and drag forces. 
 
 
 \subsection{Shark Denticle Geometry}
