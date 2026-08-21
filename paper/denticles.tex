@@ -194,7 +194,6 @@ The benchmark study calculated both drag coefficient ($C_D$) and the drag reduct
     \label{fig:3}
 \end{figure}
 
-
 \subsection{Postprocessing}
 \label{subsec:4}
 Post-processing and data extraction were conducted using ParaView. To evaluate the lift and drag forces acting on the model, we extracted pressure value. Lift was determined from the multiplication of pressure and viscous shear forces acting perpendicular to the freestream direction, while drag was computed from the forces aligned parallel to the flow vector. The drag coefficient ($C_D$) and the lift coefficient ($C_L$) were calculated using extracted following the methodology in \cite{guo_experimental_2023}
@@ -222,7 +221,7 @@ where $C_{D_s}$ is the drag coefficient of smooth airfoil while $C_{D_m}$ is the
 \subsection{Validation of simulation}
 In this simulation, which we conducted to test the accuracy of the simulation setup and to validate it by replicating previously conducted experiments, a comparison of the drag reductions between an airfoil with no features and an airfoil with a row of denticles arranged on its surface yields the results shown in Figure \ref{fig:4}. In Figure \ref{fig:4}(b), unlike in (a), the resulting low-velocity region is shown in blue. Although the denticles are placed on the airfoil in a manner that leaves a significant amount of space relative to their own dimensions, they create a low-velocity region on the airfoil surface. 
 
-Although Guo et. al. got approximately 20\%, we observed 40\% in case (d)\cite{guo_experimental_2023}.
+Although Guo et. al. got approximately 20\% drag reduction, we observed 40\% in case (d)[\cite{guo_experimental_2023}]. 
 
 
 \begin{figure}[htbp]
