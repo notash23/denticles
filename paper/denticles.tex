@@ -171,13 +171,13 @@ We used these values to create the Fusion 360 models using the script available 
 % use \sectionmark{}
 % to alter or adjust the section heading in the running head
 
-In this study, we investigated the drag coefficient of shark denticles using a computational fluid dynamics (CFD) simulation in OpenFOAM \cite{openfoam}. The denticle geometry was modeled based on micro-Computed Tomography (CT) scans to ensure realistic representation in the domain. First, we validated the simulation workflow by comparing lift and drag values and drag rates by replicating case (a) of the paper from Guo et. al. \cite{guo_experimental_2023}. We created the mesh of the geometry in OpenFOAM using the \textit{snappyHexMesh} \cite{snappyHexMesh} (might be Issa's work, and Spalding \& Pantakar) utility targeting a near-wall $y^+\approx 1 $ to resolve boundary layer behavior and used \textit{simpleFoam} as a solver \cite{simpleFoam} (TODO: We might need rephrase this and next sentence). We modeled the flow as steady-state and incompressible flow with the SST $k-\omega$ turbulence model. One of the main objectives of this study is to create a simulation that is as close to reality as possible. For this reason, water was used for the fluid with density, $\rho = 1000 \text{kg}/\text{m}^3$, and kinematic viscosity, $\nu = 1\times 10^{-6} \text{m}^2/\text{s}$ at $20 ^\circ C$. Because the simulation ran in steady state, we utilized simpleFoam as a solver. Then, post-processing of the result was executed in ParaView to obtain the lift and drag forces. 
+In this study, we investigated the drag coefficient of shark denticles using a computational fluid dynamics (CFD) simulation in OpenFOAM \cite{openfoam}. The denticle geometry was modeled based on $\mu$CT scans to ensure realistic representation in the domain. First, we validated the simulation workflow by comparing lift and drag values and drag rates by replicating case (d) of the paper from Guo et. al. \cite{guo_experimental_2023}. We created the mesh of the geometry in OpenFOAM using the \textit{snappyHexMesh} \cite{snappyHexMesh} utility targeting a near-wall $y^+\approx 1 $ to resolve boundary layer behavior. We modeled the flow as steady-state and incompressible flow with the SST $k-\omega$ turbulence model. Because the simulation ran in steady state, we utilized \textit{simpleFoam} \cite{simpleFoam} as a solver. One of the main objectives of this study is to create a simulation that is as close to reality as possible. For this reason, water was used for the fluid with density, $\rho = 1000 \text{kg}/\text{m}^3$, and kinematic viscosity, $\nu = 1\times 10^{-6} \text{m}^2/\text{s}$ at $20 ^\circ C$. Then, post-processing of the result was executed in ParaView to obtain the lift and drag forces. 
 
 
 \subsection{Shark Denticle Geometry}
 \label{subsec:2}
 
-We designed the 3D shark denticle inspired by computed tomography (CT) scan data reported in previous studies \cite{lloyd_hydrodynamic_2021, patricia_morphological_2019}. To ensure reproducibility of this study, the 3D models were parameterized using a custom script developed in the Fusion 360 CAD program. One can replicate the model using the parametric design script that is available in the Code and Data Availability section. Technical drawings illustrating the denticle profiles for the four investigated species are shown in Fig \ref{fig:2}.
+We designed the 3D shark denticle inspired by $\mu$CT scan data reported in previous studies \cite{lloyd_hydrodynamic_2021, patricia_morphological_2019}. To ensure reproducibility of this study, the 3D models were parameterized using a custom script developed in the Fusion 360 CAD program. One can replicate the model using the parametric design script that is available in the Code and Data Availability section. Technical drawings illustrating the denticle profiles for the four investigated species are shown in Fig \ref{fig:2}.
 
 \begin{figure}[htbp]
   \centering
@@ -251,9 +251,10 @@ where $C_{D_s}$ is the drag coefficient of smooth airfoil while $C_{D_m}$ is the
 % to alter or adjust the section heading in the running head
 
 \subsection{Validation of simulation}
-In this simulation, which we conducted to test the accuracy of the simulation setup and to validate it by replicating previously conducted experiments, a comparison of the drag reductions between an airfoil with no features and an airfoil with a row of denticles arranged on its surface yields the results shown in \ref{fig:4}. In \ref{fig:4}(b), unlike in (a), the resulting low-velocity region is shown in blue. Although the denticles are placed on the airfoil in a manner that leaves a significant amount of space relative to their own dimensions, they create a low-velocity region on the airfoil surface. Thanks to this resulting zero-pressure region, we observed a drag reduction on the airfoil with denticles compared to the smooth airfoil. Although we were unable to observe a drag reduction as large as that observed in case (d) in the paper [\cite{guo_experimental_2023}], \dots
+In this simulation, which we conducted to test the accuracy of the simulation setup and to validate it by replicating previously conducted experiments, a comparison of the drag reductions between an airfoil with no features and an airfoil with a row of denticles arranged on its surface yields the results shown in \ref{fig:4}. In \ref{fig:4}(b), unlike in (a), the resulting low-velocity region is shown in blue. Although the denticles are placed on the airfoil in a manner that leaves a significant amount of space relative to their own dimensions, they create a low-velocity region on the airfoil surface. 
 
-Add values here.
+Although Guo et. al. got approximately 20\%, we observed 40\% in case (d)[\cite{guo_experimental_2023}].
+
 
 \begin{figure}[htbp]
   \centering
@@ -311,7 +312,7 @@ In Fig. \ref{fig:8} you can see the comparison of the four species in the bar ch
 
 The simulation results suggest that while I. oxyrinchus (shortfin mako) and C. limbatus (blacktip shark) denticles performs higher drag reduction percentage than C. carchariac (white shark) and M. canis (smooth dogfish). 
 
-Table \ref{table:3} summarizes the drag reduction performance for each denticle geometry relative to the smooth baseline airfoil. As expected, I. oxyrinchus exhibited a drag reduction of approximately $2\%$. Notably, C. limbatus—despite being nearly 1.5 times larger—achieved a slightly greater drag reduction. The finding that these two geometries yield comparable results, despite significant differences in physical size, riblet count, and riblet depth, offers a novel perspective on the mechanisms governing denticle drag reduction.
+Table \ref{table:3} summarizes the drag reduction performance for each denticle geometry relative to the smooth baseline airfoil. As expected, I. oxyrinchus exhibited a drag reduction of approximately $2\%$. Notably, C. limbatus—despite being nearly 1.5 times larger—achieved a slightly greater drag reduction. The finding that these two geometries yield comparable results, despite significant differences in physical size, riblet count, and riblet depth, offers a novel perspective on the mechanisms governing denticle drag reduction. 
 
 \begin{table}[h]
     \centering
