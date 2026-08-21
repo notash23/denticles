@@ -27,6 +27,7 @@ This repository aims at simulating the fluid flow on a NACA0012 airfoil that is 
 - **DONE**: How to add wallshearstress and other variables in simulations?
 
 ## Final countdown
+- AI statement
 - use words instead of numbers
 - Dont forget to reference the first paper for $SST-k\omega$ and $LES$ from Smagorinsky
 - Mesh refinement study: Do 3 cases of the base case at different angles

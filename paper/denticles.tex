@@ -214,7 +214,7 @@ The NACA 0012 airfoil has a symmetrical cross-section with a maximum relative th
 
 While real shortfin mako denticles are on the micrometer scale, the simulation that we are referencing by Guo et. al. set up a physical experiment and encountered today's manufacturing limits. To overcome these limitations, the denticle geometry was scaled 60 times. To maintain the same conditions as this benchmark study, we adopted the same scaled-up denticle dimensions.
 
-Following the specification for Case (d) in \cite{guo_experimental_2023}, we positioned a row of shortfin mako shark denticles along the NACA 0012 airfoil at 0.38L from the leading edge as shown in Fig. \ref{fig:3}. However, Guo et. al. evaluated various flow velocities and angles of attack. For simplicity, we selected an inlet velocity, $U = 0.8 \text{m/s}$, and a $0^{\circ}$-degree angle of attack because they found the highest drag reduction at these values.
+Following the specification for Case (d) in \cite{guo_experimental_2023}, we positioned a row of shortfin mako shark denticles along the NACA 0012 airfoil at 0.38L from the leading edge as shown in Fig. \ref{fig:3}. However, Guo et. al. evaluated various flow velocities and angles of attack. For simplicity, we selected an inlet velocity, $U = 0.8 \text{m/s}$, and a $0^{\circ}$ degree angle of attack because they found the highest drag reduction at these values.
 
 The benchmark study calculated both drag coefficient ($C_D$) and the drag reduction rate ($\eta$). To find $\eta$, we need $C_D$ for an airfoil without denticles. Therefore just as Guo et al. did, we replicated both the smooth airfoil and denticle-equipped airfoil from Case (d) and simulation the fluid flow. 
 
@@ -284,7 +284,7 @@ Although Guo et. al. got approximately 20\%, we observed 40\% in case (d)[\cite{
 
 \subsection{Comparison of across denticles}
 
-To see how drag reduction varies depending on certain geometric parameters, we plotted graphs showing the effects of riblet count, riblet depth, and surface area on drag reduction. First, looking at Fig. \ref{fig:5}, although the riblet count is 2 for three denticle cases, a wide range of drag reduction values is observed. Furthermore, the drag reduction for the 2-riblet case is almost the same as that for the 4-riblet case. Based on this graph, there is no correlation between the number of riblets and drag reduction. Second, in Fig. \ref{fig:6}, it is possible to observe a trend in drag reduction that varies with riblet depth. Drag reduction reaches its peak at approximately 6–14 $\mu m$, while it shows weaker performance at greater riblet depths. Finally, in Fig. \ref{fig:7}, although a trend initially appeared to be emerging, we observed an increase in drag reduction as the surface area suddenly increased. Therefore, based on our findings, we did not establish a direct correlation with surface area.
+To see how drag reduction varies depending on certain geometric parameters, we plotted graphs showing the effects of riblet count, riblet depth, and surface area on drag reduction. First, looking at Fig. \ref{fig:5}, although the riblet count is two for 3 denticle cases, a wide range of drag reduction values is observed. Furthermore, the drag reduction for the two-riblet case is almost the same as that for the four-riblet case. Based on this graph, there is no correlation between the number of riblets and drag reduction. Second, in Fig. \ref{fig:6}, it is possible to observe a trend in drag reduction that varies with riblet depth. Drag reduction reaches its peak at approximately $6-14\mu m$, while it shows weaker performance at greater riblet depths. Finally, in Fig. \ref{fig:7}, although a trend initially appeared to be emerging, we observed an increase in drag reduction as the surface area suddenly increased. Therefore, based on our findings, we did not establish a direct correlation with surface area.
 
 \begin{figure}
     \centering
@@ -311,14 +311,11 @@ To see how drag reduction varies depending on certain geometric parameters, we p
 \end{figure}
 
 
+In Fig. \ref{fig:8} there is the comparison of the four species in the bar chart. 
 
+The simulation results suggest that while the shortfin mako and the blacktip shark denticles performs higher drag reduction percentage than the white shark and smooth dogfish. 
 
-
-In Fig. \ref{fig:8} you can see the comparison of the four species in the bar chart. 
-
-The simulation results suggest that while I. oxyrinchus (shortfin mako) and C. limbatus (blacktip shark) denticles performs higher drag reduction percentage than C. carchariac (white shark) and M. canis (smooth dogfish). 
-
-Table \ref{table:3} summarizes the drag reduction performance for each denticle geometry relative to the smooth baseline airfoil. As expected, I. oxyrinchus exhibited a drag reduction of approximately $2\%$. Notably, C. limbatus—despite being nearly 1.5 times larger—achieved a slightly greater drag reduction. The finding that these two geometries yield comparable results, despite significant differences in physical size, riblet count, and riblet depth, offers a novel perspective on the mechanisms governing denticle drag reduction. 
+Table \ref{table:3} summarizes the drag reduction performance for each denticle geometry relative to the smooth baseline airfoil. As expected, shortfin mako exhibited a drag reduction of approximately $2\%$. Notably, C. limbatus—despite being nearly 1.5 times larger—achieved a slightly greater drag reduction. The finding that these two geometries yield comparable results, despite significant differences in physical size, riblet count, and riblet depth, offers a novel perspective on the mechanisms governing denticle drag reduction. 
 
 \begin{table}[h]
     \centering
@@ -361,20 +358,25 @@ Because Blacktip shark denticles are 1.5 times larger than those of the Shortfin
 
 \subsection{Concerns and Future Work}
 
-We used RANS model which works well with steady state cases meaning that we do not experince the time evolution of eddies (Footnote:- fluid curves ????) 
+While a RANS model like SST $k-\omega$  is appropriate in finding the shear stresses and drag coefficient, there is much merit in using an LES model to visualize how the eddies \footnote{An Eddy is a swirl in a fluid caused due to turbulent layers mixing.} generated in the fluid are affected by the denticles. In fact, a steady state model does not describe the time evolution of the fluid. We could also understand transient behaviour caused due to the denticles.
 
-- variations of denticles of the species itself
+We also did not look into other configuration of denticles. We have only one row of denticles on the airfoil. Further studies could involve placing denticles in two rows to understand how the fluid wake of the first denticles affect the denticles behind them.
 
+Nonetheless, this study sets the basis to understand a wider variety of denticles from more species of denticles. While we have modeled only four types of denticles, we could easily create more denticles using the script and create a more comprehensive list of denticle effectiveness. In fact, sharks even have different types of denticles on different region of their bodies. 
 
+Another interesting phenomenon that might be worth simulating is bristling. When there is backflow due to an adverse pressure gradient, denticles can change their angle of attacks to mitigate the backflow. The steps to implement this feature in our simulation would involve Fluid Structure interaction (FSI). % We can end this part better
 
-Also, we didnt look for other configuration of denticles. We have only one row but with that one row, we do not see what would happen if there is another row of denticles. and this extra row would effect the fluid flow.
+\subsection{AI Disclosure Statement}
 
-- FSI
-- Shark model
-- more species
+Large Language Model (Copilot for Microsoft 365) assistance was utilized in
+the preparation of this manuscript for language refinement. All scientific interpretations, experimental designs, and data analyses were conducted solely by the author.
+
+Citation: Microsoft. (2025, May 14). Copilot for Microsoft 365 (14 May version).
+https://copilot.microsoft.com
 
 \vspace{\baselineskip}
 \textbf{Code and Data Availability} The code for the simulation and the add-in can be found on this Github page: https://github.com/notash23/denticles
+
 
 \begin{acknowledgement}
 We would like to thank Teuscher lab for the opportunity that they provided us to conduct this remote research.
@@ -386,7 +388,5 @@ Computational resources used in this work were supported by the Oregon Regional 
 % Bibliography
 \bibliography{denticles} 
 \bibliographystyle{plain}
-
-
 
 \end{document}
