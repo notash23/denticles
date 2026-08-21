@@ -212,7 +212,7 @@ We designed the 3D shark denticle inspired by computed tomography (CT) scan data
 \subsection{Validation of simulation}
 \label{subsec:3}
 
-The NACA 0012 airfoil has a symmetrical cross-section with a maximum relative thickness of $12\%$ and an aspect cord ratio of $W/L=2$, where $L$ represents the chord length, and $W$ denotes the span length. The dimensions of the NACA 0012 airfoil in this research are $L=408$ and $W=200$. While real shortfin mako denticles are on the micrometer scale, the simulation that we are referencing by Gao et. al. set up a physical experiment and encountered today's manufacturing limits. To overcome these limitations, the denticle geometry was scaled 60 times. To maintain the same conditions as this benchmark study, we adopted the same $60\times$ scaled-up denticle dimensions. Following the specification for Case (d) in \cite{guo_experimental_2023}, we positioned a row of shortfin mako shark denticles along the NACA 0012 airfoil at 0.1L from the leading edge as shown in Fig. \ref{fig:3}. However, Gao et. al. evaluated various flow velocities and angles of attack. For simplicity, we selected an inlet velocity, $U = 1 \text{m/s}$, and a 0-degree angle of attack. The benchmark study calculated both drag coefficient ($C_D$) and the drag reduction rate. To achieve this, Guo et al. also performed simulations on a smooth airfoil which means airfoil without denticles attached on it. Therefore, we replicated both the smooth airfoil and denticle-equipped airfoil from Case (d). 
+The NACA 0012 airfoil has a symmetrical cross-section with a maximum relative thickness of $12\%$ and an aspect cord ratio of $W/L=2$, where $L$ represents the chord length, and $W$ denotes the span length. The dimensions of the NACA 0012 airfoil in this research are $L=408$ and $W=200$. While real shortfin mako denticles are on the micrometer scale, the simulation that we are referencing by Gao et. al. set up a physical experiment and encountered today's manufacturing limits. To overcome these limitations, the denticle geometry was scaled 60 times. To maintain the same conditions as this benchmark study, we adopted the same $60\times$ scaled-up denticle dimensions. Following the specification for Case (d) in \cite{guo_experimental_2023}, we positioned a row of shortfin mako shark denticles along the NACA 0012 airfoil at 0.38L from the leading edge as shown in Fig. \ref{fig:3}. However, Gao et. al. evaluated various flow velocities and angles of attack. For simplicity, we selected an inlet velocity, $U = 1 \text{m/s}$, and a 0-degree angle of attack. The benchmark study calculated both drag coefficient ($C_D$) and the drag reduction rate. To achieve this, Guo et al. also performed simulations on a smooth airfoil which means airfoil without denticles attached on it. Therefore, we replicated both the smooth airfoil and denticle-equipped airfoil from Case (d). 
 
 \begin{figure}
     \centering
@@ -252,28 +252,10 @@ where $C_{D_s}$ is the drag coefficient of smooth airfoil while $C_{D_m}$ is the
 % use \sectionmark{}
 % to alter or adjust the section heading in the running head
 
-\begin{table}[h]
-    \centering
-    \begin{tabular}{|c|c|c|c|c|c|} 
-        \hline
-        Species & $C_D$ & $C_{D_{P}}$ & $C_{D_{V}}$ & Drag Reduction (\%) \\ 
-        \hline
-        \textit{Base} & 0.001566 & 0.000484 & 0.001082 & 0 \\ 
-        \textit{I. oxyrinchus} & 0.001534 & 0.000470 & 0.001063 & 2.04 \\ 
-        \textit{M. canis} & 0.001546 & 0.000470 &  0.001076 & 1.28 \\
-        \textit{C. limbatus} & 0.001533 & 0.000467 & 0.001066 & 2.11 \\
-        \textit{C. carcharias} & 0.001556 &  0.000469 & 0.001086 & 0.64 \\
-        \hline
-    \end{tabular}
-    \caption{Coefficients Results}
-    \label{table:3}
-\end{table}
- 
-
-
-
 \subsection{Validation of simulation}
+In this simulation, which we conducted to test the accuracy of the simulation setup and to validate it by replicating previously conducted experiments, a comparison of the drag reductions between an airfoil with no features and an airfoil with a row of denticles arranged on its surface yields the results shown in \ref{fig:4}. In \ref{fig:4}(b), unlike in (a), the resulting low-velocity region is shown in blue. Although the denticles are placed on the airfoil in a manner that leaves a significant amount of space relative to their own dimensions, they create a low-velocity region on the airfoil surface. Thanks to this resulting zero-pressure region, we observed a drag reduction on the airfoil with denticles compared to the smooth airfoil. Although we were unable to observe a drag reduction as large as that observed in case (d) in the paper [\cite{guo_experimental_2023}], \dots
 
+Add values here.
 
 \begin{figure}[htbp]
   \centering
@@ -292,24 +274,21 @@ where $C_{D_s}$ is the drag coefficient of smooth airfoil while $C_{D_m}$ is the
   \end{subfigure}
   \caption{Velocity field cross sectional areas comparison of smooth airfoil and airfoil with denticle}
   \label{fig:two_images}
+  \label{fig:4}
 \end{figure}
 
 \subsection{Comparison of across denticles}
 
-The simulation results suggest that while I. oxyrinchus (shortfin mako) and C. limbatus (blacktip shark) denticles performs higher drag reduction percentage than C. carchariac (white shark) and M. canis (smooth dogfish). 
+To see how drag reduction varies depending on certain geometric parameters, we plotted graphs showing the effects of riblet count, riblet depth, and surface area on drag reduction. See Figs. \ref{fig:5}, \ref{fig:6}, and \ref{fig:7}. First, looking at Fig. \ref{fig:5}, although the riblet count is 2 for the 3-denticle case, a wide range of drag reduction values is observed. Furthermore, the drag reduction for the 2-riblet case is almost the same as that for the 4-riblet case. Based on this graph, it can be concluded that the number of riblets has no effect on drag reduction. Second, in Fig. \ref{fig:6}, it is possible to observe a trend in drag reduction that varies with riblet depth. Drag reduction reaches its peak at approximately 6–14 $\mu$ meters, while it shows weaker performance at greater riblet depths. Finally, in Fig. \ref{fig:7}, although a trend initially appeared to be emerging, we observed an increase in drag reduction as the surface area suddenly increased. Therefore, based on our findings, we did not establish a direct correlation with surface area.
 
-\begin{figure}
-    \centering
-    \includegraphics[width=0.8\linewidth]{drag reduction vs species.png} 
-    \centering
-    \caption{Drag reduction percentages across different shark species denticle geometries.}
-\end{figure}
+Bla bla bla explain those in a couple sentences. 
 
 \begin{figure}
     \centering
     \includegraphics[width=0.8\linewidth]{drag reduction vs num riblets.png} 
     \centering
     \caption{Drag reduction percentages for varying numbers of riblets per denticle.}
+    \label{fig:5}
 \end{figure}
 
 \begin{figure}
@@ -317,6 +296,7 @@ The simulation results suggest that while I. oxyrinchus (shortfin mako) and C. l
     \includegraphics[width=0.8\linewidth]{drag reduction vs rib depth.png} 
     \centering
     \caption{Drag reduction percentages for varying riblet depths per denticle.}
+    \label{fig:6}
 \end{figure}
 
 \begin{figure}
@@ -324,14 +304,51 @@ The simulation results suggest that while I. oxyrinchus (shortfin mako) and C. l
     \includegraphics[width=0.8\linewidth]{drag reduction vs surface area.png} 
     \centering
     \caption{Drag reduction percentages for varying denticle surface areas.}
+    \label{fig:7}
 \end{figure}
+
+
+
+
+
+In Fig. \ref{fig:8} you can see the comparison of the four species in the bar chart. 
+
+The simulation results suggest that while I. oxyrinchus (shortfin mako) and C. limbatus (blacktip shark) denticles performs higher drag reduction percentage than C. carchariac (white shark) and M. canis (smooth dogfish). 
+
+Table \ref{table:3} summarizes the drag reduction performance for each denticle geometry relative to the smooth baseline airfoil. As expected, I. oxyrinchus exhibited a drag reduction of approximately $2\%$. Notably, C. limbatus—despite being nearly 1.5 times larger—achieved a slightly greater drag reduction. The finding that these two geometries yield comparable results, despite significant differences in physical size, riblet count, and riblet depth, offers a novel perspective on the mechanisms governing denticle drag reduction.
+
+\begin{table}[h]
+    \centering
+    \begin{tabular}{|c|c|c|c|c|c|} 
+        \hline
+        Species & $C_D$ & $C_{D_{P}}$ & $C_{D_{V}}$ & Drag Reduction (\%) \\ 
+        \hline
+        \textit{Base} & 0.001566 & 0.000484 & 0.001082 & 0 \\ 
+        \textit{I. oxyrinchus} & 0.001534 & 0.000470 & 0.001063 & 2.04 \\ 
+        \textit{M. canis} & 0.001546 & 0.000470 &  0.001076 & 1.28 \\
+        \textit{C. limbatus} & 0.001533 & 0.000467 & 0.001066 & 2.11 \\
+        \textit{C. carcharias} & 0.001556 &  0.000469 & 0.001086 & 0.64 \\
+        \hline
+    \end{tabular}
+    \caption{Drag coefficient results. $C_D$, $C_{D_{P}}$, and $C_{D_{V}}$ corresponds to total drag, pressure drag, and viscous drag, respectively.}
+    \label{table:3}
+\end{table}
+ 
+\begin{figure}
+    \centering
+    \includegraphics[width=0.8\linewidth]{drag reduction vs species.png} 
+    \centering
+    \caption{Drag reduction percentages across different shark species denticle geometries.}
+    \label{fig:8}
+\end{figure}
+
 
 \section{Conclusion}
 \label{sec:5}
 We found out that even though blacktip Shark denticles are much bigger (give exact scale number here) than shortfin mako shark denticles, blacks tip shark denticles reduce drag better than shortfin mako shark denticles.
 
 \subsection{Applications}
-Because Blacktip shark denticles are ???? times larger than those of the Shortfin Mako while providing superior drag reduction, they present a distinct manufacturing advantage. The larger geometric scale simplifies fabrication and potentially lowers production costs, depending on the manufacturing technique used. By easing current fabrication constraints, denticle-inspired designs become far more viable for industrial adoption. Consequently, integrating these structures into aerodynamic and hydrodynamic vehicles can lower drag, improve energy efficiency, and ultimately reduce operational fuel costs.
+Because Blacktip shark denticles are 1.5 times larger than those of the Shortfin Mako while providing superior drag reduction, they present a distinct manufacturing advantage. The larger geometric scale simplifies fabrication and potentially lowers production costs, depending on the manufacturing technique used. By easing current fabrication constraints, denticle-inspired designs become far more viable for industrial adoption. Consequently, integrating these structures into aerodynamic and hydrodynamic vehicles can lower drag, improve energy efficiency, and ultimately reduce operational fuel costs.
 
 \subsection{Concerns and Future Work}
 
