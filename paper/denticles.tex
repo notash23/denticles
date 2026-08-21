@@ -171,13 +171,13 @@ We used these values to create the Fusion 360 models using the script available 
 % use \sectionmark{}
 % to alter or adjust the section heading in the running head
 
-In this study, we investigated the drag coefficient of shark denticles using a computational fluid dynamics (CFD) simulation in OpenFOAM \cite{openfoam}. The denticle geometry was modeled based on $\mu$CT scans to ensure realistic representation in the domain. First, we validated the simulation workflow by comparing lift and drag values and drag rates by replicating case (d) of the paper from Guo et. al. \cite{guo_experimental_2023}. We created the mesh of the geometry in OpenFOAM using the \textit{snappyHexMesh} \cite{snappyHexMesh} utility targeting a near-wall $y^+\approx 1 $ to resolve boundary layer behavior. We modeled the flow as steady-state and incompressible flow with the SST $k-\omega$ turbulence model. Because the simulation ran in steady state, we utilized \textit{simpleFoam} \cite{simpleFoam} as a solver. One of the main objectives of this study is to create a simulation that is as close to reality as possible. For this reason, water was used for the fluid with density, $\rho = 1000 \text{kg}/\text{m}^3$, and kinematic viscosity, $\nu = 1\times 10^{-6} \text{m}^2/\text{s}$ at $20 ^\circ C$. Then, post-processing of the result was executed in ParaView to obtain the lift and drag forces. 
+In this study, we investigated the drag coefficient of shark denticles using a computational fluid dynamics (CFD) simulation in OpenFOAM \cite{openfoam}. First, we validated the simulation workflow by comparing lift and drag values and drag rates by replicating case (d) of the paper from Guo et. al. \cite{guo_experimental_2023}. One of the main objectives of this study is to create a simulation that is as close to reality as possible. We created the mesh of the geometry in OpenFOAM using the \textit{snappyHexMesh} \cite{snappyHexMesh} utility targeting a near-wall $y^+\approx 1 $ to resolve boundary layer behavior. We modeled the flow as steady-state and incompressible flow with the SST $k-\omega$ turbulence model. Because the simulation ran in steady state, we utilized \textit{simpleFoam} \cite{simpleFoam} as a solver. For this reason, water was used for the fluid with density, $\rho = 1000 \text{kg}/\text{m}^3$, and kinematic viscosity, $\nu = 1\times 10^{-6} \text{m}^2/\text{s}$ at $20 ^\circ C$. Then, post-processing of the result was executed in ParaView to obtain the lift and drag forces. 
 
 
 \subsection{Shark Denticle Geometry}
 \label{subsec:2}
 
-We designed the 3D shark denticle inspired by $\mu$CT scan data reported in previous studies \cite{lloyd_hydrodynamic_2021, patricia_morphological_2019}. To ensure reproducibility of this study, the 3D models were parameterized using a custom script developed in the Fusion 360 CAD program. One can replicate the model using the parametric design script that is available in the Code and Data Availability section. Technical drawings illustrating the denticle profiles for the four investigated species are shown in Fig \ref{fig:2}.
+We designed the 3D shark denticle inspired by $\mu$CT scan data reported in previous studies to ensure realistic representation in the domain \cite{lloyd_hydrodynamic_2021, patricia_morphological_2019}. To ensure reproducibility of this study, the 3D models were parameterized using a script in the Fusion 360. One can replicate the model using the parametric design script that is available in the Code and Data Availability section. Technical drawings illustrating the denticle profiles for the four investigated species are shown in Fig \ref{fig:2}.
 
 \begin{figure}[htbp]
   \centering
@@ -210,7 +210,13 @@ We designed the 3D shark denticle inspired by $\mu$CT scan data reported in prev
 \subsection{Validation of simulation}
 \label{subsec:3}
 
-The NACA 0012 airfoil has a symmetrical cross-section with a maximum relative thickness of $12\%$ and an aspect cord ratio of $W/L=2$, where $L$ represents the chord length, and $W$ denotes the span length. The dimensions of the NACA 0012 airfoil in this research are $L=408$ and $W=200$. While real shortfin mako denticles are on the micrometer scale, the simulation that we are referencing by Gao et. al. set up a physical experiment and encountered today's manufacturing limits. To overcome these limitations, the denticle geometry was scaled 60 times. To maintain the same conditions as this benchmark study, we adopted the same $60\times$ scaled-up denticle dimensions. Following the specification for Case (d) in \cite{guo_experimental_2023}, we positioned a row of shortfin mako shark denticles along the NACA 0012 airfoil at 0.38L from the leading edge as shown in Fig. \ref{fig:3}. However, Gao et. al. evaluated various flow velocities and angles of attack. For simplicity, we selected an inlet velocity, $U = 1 \text{m/s}$, and a 0-degree angle of attack. The benchmark study calculated both drag coefficient ($C_D$) and the drag reduction rate. To achieve this, Guo et al. also performed simulations on a smooth airfoil which means airfoil without denticles attached on it. Therefore, we replicated both the smooth airfoil and denticle-equipped airfoil from Case (d). 
+The NACA 0012 airfoil has a symmetrical cross-section with a maximum relative thickness of $12\%$ and an aspect cord ratio of $W/L=2$, where $L$ represents the chord length, and $W$ denotes the span length. The dimensions of the NACA 0012 airfoil in this research are $L=408 \text{mm}$ and $W=200 \text{mm}$.
+
+While real shortfin mako denticles are on the micrometer scale, the simulation that we are referencing by Guo et. al. set up a physical experiment and encountered today's manufacturing limits. To overcome these limitations, the denticle geometry was scaled 60 times. To maintain the same conditions as this benchmark study, we adopted the same scaled-up denticle dimensions.
+
+Following the specification for Case (d) in \cite{guo_experimental_2023}, we positioned a row of shortfin mako shark denticles along the NACA 0012 airfoil at 0.38L from the leading edge as shown in Fig. \ref{fig:3}. However, Guo et. al. evaluated various flow velocities and angles of attack. For simplicity, we selected an inlet velocity, $U = 0.8 \text{m/s}$, and a $0^{\circ}$-degree angle of attack because they found the highest drag reduction at these values.
+
+The benchmark study calculated both drag coefficient ($C_D$) and the drag reduction rate ($\eta$). To find $\eta$, we need $C_D$ for an airfoil without denticles. Therefore just as Guo et al. did, we replicated both the smooth airfoil and denticle-equipped airfoil from Case (d) and simulation the fluid flow. 
 
 \begin{figure}
     \centering
@@ -261,7 +267,7 @@ Although Guo et. al. got approximately 20\%, we observed 40\% in case (d)[\cite{
   \begin{subfigure}[b]{0.48\textwidth}
     \centering
     \includegraphics[width=\textwidth]{smooth.png}
-    \caption{Smooth airfoil}
+    \caption{Airfoil without denticles}
     \label{fig:first}
   \end{subfigure}
   \hfill
@@ -342,16 +348,31 @@ Table \ref{table:3} summarizes the drag reduction performance for each denticle 
 
 \section{Conclusion}
 \label{sec:5}
-We found out that even though blacktip Shark denticles are much bigger (give exact scale number here) than shortfin mako shark denticles, blacks tip shark denticles reduce drag better than shortfin mako shark denticles.
+
+- bigger denticle better drag
+- but, even if it is bigger, same riblet Spacing
+- suggests that there is a optimal riblet Spacing
+- riblet depth is less for C. limbatus because it is less and still getting better drag reduction
+- there might be optimal riblet depth
+- If there would be a way to replicate denticles C. limbatus would be better and less would be neded to cover a surface.
 
 \subsection{Applications}
 Because Blacktip shark denticles are 1.5 times larger than those of the Shortfin Mako while providing superior drag reduction, they present a distinct manufacturing advantage. The larger geometric scale simplifies fabrication and potentially lowers production costs, depending on the manufacturing technique used. By easing current fabrication constraints, denticle-inspired designs become far more viable for industrial adoption. Consequently, integrating these structures into aerodynamic and hydrodynamic vehicles can lower drag, improve energy efficiency, and ultimately reduce operational fuel costs.
 
 \subsection{Concerns and Future Work}
 
-We used RANS model which works well with steady state cases meaning that we do not experince the time evolution of eddies (fluid curves ????) 
+We used RANS model which works well with steady state cases meaning that we do not experince the time evolution of eddies (Footnote:- fluid curves ????) 
+
+- variations of denticles of the species itself
+
+
 
 Also, we didnt look for other configuration of denticles. We have only one row but with that one row, we do not see what would happen if there is another row of denticles. and this extra row would effect the fluid flow.
+
+- FSI
+- Shark model
+- more species
+
 \vspace{\baselineskip}
 \textbf{Code and Data Availability} The code for the simulation and the add-in can be found on this Github page: https://github.com/notash23/denticles
 
