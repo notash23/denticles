@@ -11,7 +11,7 @@
 set -e
 
 SPECIES=('oxyrinchus' 'canis' 'carcharias' 'limbatus')
-ANGLE=0
+ANGLE=${1:-0}
 
 # Load software (if needed) using module load, e.g.
 module load spack
@@ -19,9 +19,9 @@ spack env activate foam
 
 run_simulation () {
   # Move required files into Parallel Scratch Storage
-  mkdir -p "/scratch/adwarka-denticle/simulations/final/angle${ANGLE}/${1}/"
-  cp -r "/scratch/adwarka-denticle/denticles/simulation/airfoil/." "/scratch/adwarka-denticle/simulations/final/angle${ANGLE}/${1}/"
-  cd "/scratch/adwarka-denticle/simulations/final/angle${ANGLE}/${1}/"
+  mkdir -p "/scratch/adwarka-denticle/simulations/final/medium/angle${ANGLE}/${1}/"
+  cp -r "/scratch/adwarka-denticle/denticles/simulation/medium/airfoil/." "/scratch/adwarka-denticle/simulations/final/medium/angle${ANGLE}/${1}/"
+  cd "/scratch/adwarka-denticle/simulations/final/medium/angle${ANGLE}/${1}/"
   
   # Load STL
   surfaceTransformPoints -rotate-y "$ANGLE" /scratch/adwarka-denticle/models/airfoil.stl constant/triSurface/airfoil.stl
@@ -42,8 +42,6 @@ run_simulation () {
   mv system/sim.decomposeParDict system/decomposeParDict
   decomposePar
   mpirun simpleFoam -parallel
-  reconstructPar
-  rm -r processor*
   touch foam.foam 
 }
 

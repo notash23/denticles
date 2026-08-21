@@ -18,9 +18,9 @@ spack env activate foam
 
 run_simulation () {
   # Move required files into Parallel Scratch Storage
-  mkdir -p "/scratch/adwarka-denticle/simulations/final/angle${1}/base/"
-  cp -r "/scratch/adwarka-denticle/denticles/simulation/airfoil_base/." "/scratch/adwarka-denticle/simulations/final/angle${1}/base/"
-  cd "/scratch/adwarka-denticle/simulations/final/angle${1}/base/"
+  mkdir -p "/scratch/adwarka-denticle/simulations/final/medium/angle${1}/base/"
+  cp -r "/scratch/adwarka-denticle/denticles/simulation/medium/airfoil_base/." "/scratch/adwarka-denticle/simulations/final/medium/angle${1}/base/"
+  cd "/scratch/adwarka-denticle/simulations/final/medium/angle${1}/base/"
   
   # Load STL
   surfaceTransformPoints -rotate-y "$1" /scratch/adwarka-denticle/models/airfoil.stl constant/triSurface/airfoil.stl
@@ -39,8 +39,6 @@ run_simulation () {
   mv system/sim.decomposeParDict system/decomposeParDict
   decomposePar
   mpirun simpleFoam -parallel
-  reconstructPar
-  rm -r processor*
   touch foam.foam 
 }
 
