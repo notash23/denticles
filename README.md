@@ -29,7 +29,7 @@ This repository aims at simulating the fluid flow on a NACA0012 airfoil that is 
 ## Final countdown
 - DONE reference bristling
 - review sections
-- use common names of sharks
+- DONE: use common names of sharks
 - DONE AI statement
 - DONE use words instead of numbers
 - DONE Dont forget to reference the first paper for $SST-k\omega$ and $LES$ from Smagorinsky
